@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860556511471",
+    "project_id": "ecowatt-7f29b",
+    "storage_bucket": "ecowatt-7f29b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860556511471:android:cf2796ed451e5d7290f31a",
+        "android_client_info": {
+          "package_name": "com.ecowatt.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVKtm3UxCiPblX3uOi7e5UXNdOkzcLnFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
