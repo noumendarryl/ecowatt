@@ -18,7 +18,7 @@ jobs:
           check-latest: true
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
+          flutter-version: '3.5.7'
       - run: flutter pub get
       - run: flutter build apk --debug --split-per-abi
       - name: Push to releases
