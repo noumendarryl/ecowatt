@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ecowatt"
+    namespace = "com.ecowatt.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
