@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '860556511471',
     projectId: 'ecowatt-7f29b',
     storageBucket: 'ecowatt-7f29b.appspot.com',
-    iosBundleId: 'com.example.ecowatt',
+    iosBundleId: 'com.ecowatt.app',
   );
 
   static const FirebaseOptions web = FirebaseOptions(
