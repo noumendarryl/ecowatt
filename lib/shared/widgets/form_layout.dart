@@ -1,5 +1,6 @@
 import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:ecowatt/shared/widgets/user_avatar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -31,6 +32,7 @@ class FormLayout extends StatelessWidget {
   final String? phoneValue;
   final TextEditingController? phoneController;
   final bool? isLoading;
+  final bool? emailDisabled;
   final bool? isCancel;
   final double? gap;
 
@@ -60,6 +62,7 @@ class FormLayout extends StatelessWidget {
     this.phoneValue,
     this.phoneController,
     this.isLoading = false,
+    this.emailDisabled = false,
     this.isCancel = false,
     this.gap = 5.0,
   });
@@ -91,22 +94,23 @@ class FormLayout extends StatelessWidget {
                   label: "Display Name",
                   controller: displayNameController!,
                   keyboardType: TextInputType.text,
-                  suffixIcon: const Icon(Icons.person),
+                  suffixIcon: const Icon(CupertinoIcons.person),
                 ),
               if (isUsername!)
                 Input(
                   label: "Username",
                   controller: usernameController!,
                   keyboardType: TextInputType.text,
-                  suffixIcon: const Icon(Icons.person),
+                  suffixIcon: const Icon(CupertinoIcons.person),
                 ),
               if (isEmail!)
                 Input(
                   label: "Email address",
                   controller: emailController!,
                   keyboardType: TextInputType.emailAddress,
+                  disabled: emailDisabled,
                   suffixIcon: const Icon(
-                    Icons.email,
+                    CupertinoIcons.mail,
                   ),
                   validator: (String? value) {
                     if (!Formatters.isEmailValid(value!)) {
@@ -134,8 +138,8 @@ class FormLayout extends StatelessWidget {
                       },
                       icon: Icon(
                         _isPasswordVisible.value
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
+                            ? CupertinoIcons.eye_slash
+                            : CupertinoIcons.eye,
                       ),
                     ),
                   ),
@@ -161,8 +165,8 @@ class FormLayout extends StatelessWidget {
                       },
                       icon: Icon(
                         _isConfirmPasswordVisible.value
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
+                            ? CupertinoIcons.eye_slash
+                            : CupertinoIcons.eye,
                       ),
                     ),
                   ),
@@ -173,7 +177,7 @@ class FormLayout extends StatelessWidget {
                   controller: phoneController!,
                   keyboardType: TextInputType.number,
                   suffixIcon: const Icon(
-                    Icons.phone,
+                    CupertinoIcons.phone,
                   ),
                 ),
             ],

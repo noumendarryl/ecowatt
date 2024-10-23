@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ecowatt/shared/constants/ui_helpers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UserAvatar extends StatelessWidget {
@@ -38,7 +39,7 @@ class UserAvatar extends StatelessWidget {
                   height: height,
                 )
               : Icon(
-                  Icons.add_photo_alternate,
+                  CupertinoIcons.photo_camera,
                   color: Theme.of(context).colorScheme.primary,
                   size: iconSize,
                 ),

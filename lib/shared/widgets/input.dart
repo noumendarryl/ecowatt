@@ -13,6 +13,7 @@ class Input extends StatelessWidget {
   final bool isObscured;
   final String obscuringChar;
   final bool? primary;
+  final bool? outlined;
   final bool? disabled;
   final dynamic prefixIcon;
   final dynamic suffixIcon;
@@ -34,6 +35,7 @@ class Input extends StatelessWidget {
     this.isObscured = false,
     this.obscuringChar = '•',
     this.primary = true,
+    this.outlined = true,
     this.disabled = false,
     this.prefixIcon,
     this.suffixIcon,
@@ -55,27 +57,53 @@ class Input extends StatelessWidget {
           enabled: !disabled!,
           keyboardType: keyboardType,
           decoration: InputDecoration(
-              disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: _getTextFormFieldBorder(context)),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: _getTextFormFieldBorder(context)),
-              errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.error,
-                      width: 2.0)),
-              focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.error,
-                      width: 2.0)),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 2.0)),
+              disabledBorder: outlined!
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: _getTextFormFieldBorder(context))
+                  : UnderlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: _getTextFormFieldBorder(context)),
+              enabledBorder: outlined!
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: _getTextFormFieldBorder(context))
+                  : UnderlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: _getTextFormFieldBorder(context)),
+              errorBorder: outlined!
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.error,
+                          width: 2.0))
+                  : UnderlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.error,
+                          width: 2.0)),
+              focusedErrorBorder: outlined!
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.error,
+                          width: 2.0))
+                  : UnderlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.error,
+                          width: 2.0)),
+              focusedBorder: outlined!
+                  ? OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2.0))
+                  : UnderlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 2.0)),
               filled: disabled,
               fillColor: _getTextFormFieldColor(context),
               prefixIcon: prefixIcon,
@@ -121,21 +149,23 @@ class Input extends StatelessWidget {
       return BorderSide.none;
     } else {
       return BorderSide(
-          color: Theme.of(context).colorScheme.tertiary,
-          width: 2.0);
+          color: Theme.of(context).colorScheme.tertiary, width: 2.0);
     }
   }
 
   TextStyle? _getTextFormFieldTextStyle(BuildContext context) {
     if (disabled!) {
       return Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Theme.of(context).colorScheme.onTertiary, fontSize: Theme.of(context).textTheme.bodySmall?.fontSize);
+          color: Theme.of(context).colorScheme.onTertiary,
+          fontSize: Theme.of(context).textTheme.bodySmall?.fontSize);
     } else if (primary!) {
       return Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Theme.of(context).colorScheme.tertiary, fontSize: Theme.of(context).textTheme.bodySmall?.fontSize);
+          color: Theme.of(context).colorScheme.tertiary,
+          fontSize: Theme.of(context).textTheme.bodySmall?.fontSize);
     } else {
       return Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Theme.of(context).colorScheme.onTertiary, fontSize: Theme.of(context).textTheme.bodySmall?.fontSize);
+          color: Theme.of(context).colorScheme.onTertiary,
+          fontSize: Theme.of(context).textTheme.bodySmall?.fontSize);
     }
   }
 

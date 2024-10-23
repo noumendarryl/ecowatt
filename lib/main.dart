@@ -1,3 +1,11 @@
+import 'package:ecowatt/features/device/logic/device_cubit.dart';
+import 'package:ecowatt/features/device/logic/device_measurement_cubit.dart';
+import 'package:ecowatt/features/device/logic/device_type_cubit.dart';
+import 'package:ecowatt/features/device/repositories/device_measurement_repository.dart';
+import 'package:ecowatt/features/device/repositories/device_repository.dart';
+import 'package:ecowatt/features/device/repositories/device_type_repository.dart';
+import 'package:ecowatt/features/home/logic/room_cubit.dart';
+import 'package:ecowatt/features/home/repositories/room_repository.dart';
 import 'package:ecowatt/routing/app_router.dart';
 import 'package:ecowatt/shared/themes/app_themes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'features/auth/logic/auth_cubit.dart';
-import 'features/auth/repository/auth_repository.dart';
+import 'features/auth/repositories/auth_repository.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,33 +35,36 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<AuthRepository>(
           create: (context) => AuthRepository(),
         ),
-        // RepositoryProvider<EquipmentRepository>(
-        //   create: (context) => EquipmentRepository(),
-        // ),
-        // RepositoryProvider<IndustryRepository>(
-        //   create: (context) => IndustryRepository(),
-        // ),
-        // RepositoryProvider<TutorialRepository>(
-        //   create: (context) => TutorialRepository(),
-        // ),
+        RepositoryProvider<RoomRepository>(
+          create: (context) => RoomRepository(),
+        ),
+        RepositoryProvider<DeviceRepository>(
+          create: (context) => DeviceRepository(),
+        ),
+        RepositoryProvider<DeviceTypeRepository>(
+          create: (context) => DeviceTypeRepository(),
+        ),
+        RepositoryProvider<DeviceMeasurementRepository>(
+          create: (context) => DeviceMeasurementRepository(),
+        ),
       ],
       child: MultiBlocProvider(
           providers: [
             BlocProvider<AuthCubit>(
               create: (context) => AuthCubit(context.read<AuthRepository>()),
             ),
-            // BlocProvider<CategoryCubit>(
-            //   create: (context) => CategoryCubit(),
-            // ),
-            // BlocProvider<EquipmentCubit>(
-            //   create: (context) => EquipmentCubit(context.read<EquipmentRepository>()),
-            // ),
-            // BlocProvider<IndustryCubit>(
-            //   create: (context) => IndustryCubit(context.read<IndustryRepository>()),
-            // ),
-            // BlocProvider<TutorialCubit>(
-            //   create: (context) => TutorialCubit(context.read<TutorialRepository>()),
-            // ),
+            BlocProvider<RoomCubit>(
+              create: (context) => RoomCubit(context.read<RoomRepository>()),
+            ),
+            BlocProvider<DeviceCubit>(
+              create: (context) => DeviceCubit(context.read<DeviceRepository>()),
+            ),
+            BlocProvider<DeviceTypeCubit>(
+              create: (context) => DeviceTypeCubit(context.read<DeviceTypeRepository>()),
+            ),
+            BlocProvider<DeviceMeasurementCubit>(
+              create: (context) => DeviceMeasurementCubit(context.read<DeviceMeasurementRepository>()),
+            ),
           ],
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,

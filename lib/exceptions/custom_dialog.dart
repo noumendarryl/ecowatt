@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,10 +38,10 @@ Color _getSnackbarColor(SnackbarType type) {
 Widget _getSnackbarIcon(SnackbarType type) {
   switch (type) {
     case SnackbarType.success:
-      return const Icon(Icons.check_circle, color: Colors.white, size: 25.0,);
+      return const Icon(CupertinoIcons.checkmark_seal_fill, color: Colors.white, size: 25.0,);
     case SnackbarType.error:
-      return const Icon(Icons.error, color: Colors.white, size: 25.0,);
+      return const Icon(CupertinoIcons.exclamationmark_triangle_fill, color: Colors.white, size: 25.0,);
     case SnackbarType.info:
-      return const Icon(Icons.info, color: Colors.white, size: 25.0,);
+      return const Icon(CupertinoIcons.info_circle_fill, color: Colors.white, size: 25.0,);
   }
 }

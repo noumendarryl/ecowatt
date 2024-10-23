@@ -128,14 +128,13 @@ class Register extends StatelessWidget {
                       ),
                     ),
                     verticalSpaceSmall,
-                    // const Spacer(),
                     Footer(
                       size: size,
                     ),
                     verticalSpaceMedium,
                     TextRich(
-                      primaryText: "Learn how Ecowatt protects your",
-                      secondaryText: " privacy",
+                      primaryText: "Learn more about",
+                      secondaryText: " Ecowatt",
                       alignment: Alignment.center,
                       onClick: () {},
                     ),

@@ -47,75 +47,68 @@ class Login extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
               backgroundColor: Theme.of(context).colorScheme.onSurface,
-              body: Container(
+              body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: smallSize),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: largeSize),
-                      child: Image.asset(
-                        "images/logo/ecowatt.png",
-                        height: size.height * 0.1,
+                      child: Center(
+                        child: Image.asset(
+                          "images/logo/ecowatt.png",
+                          height: size.height * 0.1,
+                        ),
+                      )
+                    ),
+                    Text(
+                      "Welcome Back !",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.scrim,
+                          fontFamily: Theme.of(context)
+                              .textTheme
+                              .headlineLarge!
+                              .fontFamily,
+                          fontSize: 38.0,
+                          fontWeight: Theme.of(context)
+                              .textTheme
+                              .headlineLarge!
+                              .fontWeight),
+                    ),
+                    verticalSpaceSmall,
+                    Text(
+                      "Please enter your credentials to continue",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontFamily:
+                            Theme.of(context).textTheme.bodySmall!.fontFamily,
+                        fontSize:
+                            Theme.of(context).textTheme.bodyMedium!.fontSize,
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Welcome Back !",
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.scrim,
-                              fontFamily: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge!
-                                  .fontFamily,
-                              fontSize: 38.0,
-                              fontWeight: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge!
-                                  .fontWeight),
-                        ),
-                        verticalSpaceSmall,
-                        Text(
-                          "Please enter your credentials to continue",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .fontFamily,
-                            fontSize: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .fontSize,
-                          ),
-                        ),
-                        verticalSpaceLarge,
-                        FormLayout(
-                          formKey: _formKey,
-                          label: "Sign in",
-                          emailController: _emailController,
-                          passwordController: _passwordController,
-                          onAction: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                              context.read<AuthCubit>().signInWithEmail(
-                                  _emailController.text.toLowerCase(),
-                                  _passwordController.text.trim());
-                            }
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 25.0),
-                          child: TextRich(
-                            secondaryText: "Lost password ?",
-                            onClick: () {},
-                          ),
-                        ),
-                      ],
+                    verticalSpaceLarge,
+                    FormLayout(
+                      formKey: _formKey,
+                      label: "Sign in",
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      onAction: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          context.read<AuthCubit>().signInWithEmail(
+                              _emailController.text.toLowerCase(),
+                              _passwordController.text.trim());
+                        }
+                      },
                     ),
-                    // const SizedBox(height: Sizes.spacing),
-                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 25.0),
+                      child: TextRich(
+                        secondaryText: "Lost password ?",
+                        onClick: () {},
+                      ),
+                    ),
+                    verticalSpaceSmall,
                     Footer(
                       size: size,
                     ),

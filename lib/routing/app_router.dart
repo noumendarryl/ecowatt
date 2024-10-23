@@ -11,5 +11,10 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: Login.page),
     AutoRoute(page: Register.page),
     AutoRoute(page: HomeRoute.page),
+    AutoRoute(page: RoomListRoute.page),
+    AutoRoute(page: RoomDetailsRoute.page),
+    AutoRoute(page: AddDeviceRoute.page),
+    AutoRoute(page: DeviceDetailsRoute.page),
+    AutoRoute(page: SearchDeviceRoute.page),
   ];
 }
