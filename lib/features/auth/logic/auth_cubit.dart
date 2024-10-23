@@ -1,15 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../profile/models/user_model.dart';
-import '../repository/auth_repository.dart';
-
-part 'auth_state.dart';
-
-part 'auth_state.freezed.dart';
+import '../repositories/auth_repository.dart';
+import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;

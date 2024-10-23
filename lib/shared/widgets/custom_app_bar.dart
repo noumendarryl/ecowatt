@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:ecowatt/shared/widgets/weather_animations.dart';
+import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/profile/logic/user_cubit.dart';
@@ -12,7 +13,7 @@ import '../../routing/app_router.gr.dart';
 class CustomAppbar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
 
-  const CustomAppbar({Key? key, required this.title}) : super(key: key);
+  const CustomAppbar({super.key, required this.title});
 
   @override
   _CustomAppbarState createState() => _CustomAppbarState();
@@ -49,27 +50,23 @@ class _CustomAppbarState extends State<CustomAppbar> {
               return IconButton(
                 icon: Row(
                   children: [
-                    Text('hello'),
+                    const Text('hello'),
                     Image.network(iconUrl, width: 30, height: 30), // Affichage de l'icône
                     const SizedBox(width: 5),
                     Text(
                       "${state.weather.temperature.toStringAsFixed(1)}°C",
-                      style: TextStyle(color: Colors.black), // Couleur du texte
+                      style: const TextStyle(color: Colors.black), // Couleur du texte
                     ),
                   ],
-
-
                 ),
                 onPressed: (){
-                  context.router.push(WeatherRoute());
+                  context.router.push(const WeatherRoute());
                 },
               );
             }else if (state is WeatherLoading) {
-              return Center(child: CircularProgressIndicator()); // Afficher un indicateur de chargement si nécessaire
+              return const Center(child: CircularProgressIndicator()); // Afficher un indicateur de chargement si nécessaire
             }
-            return Container(
-              child: Text('hello'),
-            ); // Retourner un conteneur vide si aucun état n'est chargé
+            return const Text('hello'); // Retourner un conteneur vide si aucun état n'est chargé
           },
       ),
       title: Text(
@@ -109,11 +106,11 @@ class _CustomAppbarState extends State<CustomAppbar> {
                       children: [
                         CircleAvatar(
                           radius: 18,
-                          backgroundImage: (user.photoURL != null && user.photoURL!.isNotEmpty)
-                              ? NetworkImage(user.photoURL!) // Utiliser la photoURL si disponible
+                          backgroundImage: (user.photoURL.isNotEmpty)
+                              ? NetworkImage(user.photoURL) // Utiliser la photoURL si disponible
                               : null,
-                          child: (user.photoURL == null || user.photoURL!.isEmpty)
-                              ? const Icon(Icons.person, size: 18) // Icône par défaut si pas de photo
+                          child: (user.photoURL.isEmpty)
+                              ? const Icon(Icons.person, size: mediumSize) // Icône par défaut si pas de photo
                               : null,
                         ),
                         Positioned(
@@ -133,13 +130,13 @@ class _CustomAppbarState extends State<CustomAppbar> {
                     ),
                   ),
                   onPressed: () {
-                    context.router.push(UserProfileRoute());
+                    context.router.push(const UserProfileRoute());
                   },
                 );
               },
               failure: (error) => const Padding(
                 padding: EdgeInsets.only(right: 15),
-                child: Icon(Icons.error, color: Colors.red), // Afficher une icône d'erreur
+                child: Icon(CupertinoIcons.exclamationmark_triangle_fill, color: Colors.red), // Afficher une icône d'erreur
               ),
             );
           },

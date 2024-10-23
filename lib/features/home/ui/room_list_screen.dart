@@ -60,7 +60,7 @@ class _RoomListScreenState extends State<RoomListScreen> {
             size: mediumSize,
           ),
           onPressed: () {
-            context.router.pop();
+            context.router.maybePop();
           },
         ),
         title: Text(
@@ -159,7 +159,7 @@ class _RoomListScreenState extends State<RoomListScreen> {
                                       .scrim,
                                 ),
                                 onPressed: () {
-                                  context.router.pop();
+                                  context.router.maybePop();
                                 },
                               ),
                             ),

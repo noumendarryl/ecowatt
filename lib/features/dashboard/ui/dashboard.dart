@@ -1,15 +1,14 @@
 import 'package:auto_route/annotations.dart';
-import 'package:ecowatt/shared/widgets/BaseLayout.dart';
+import 'package:ecowatt/shared/constants/ui_helpers.dart';
+import 'package:ecowatt/shared/widgets/base_layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import '../../../shared/widgets/customAppBar.dart';
 import '../logic/electricity_cubit.dart';
 import '../logic/electricity_state.dart';
-import '../model/electricity_data_model.dart';
-import '../repository/electricity_repository.dart';
+import '../models/electricity_data_model.dart';
 
 
 @RoutePage()
@@ -27,19 +26,18 @@ class _DashboardPageState extends State<DashboardPage> {
     String userId = user!.uid;
     context.read<ElectricityCubit>().loadElectricityData(userId);
   }
+
   @override
   Widget build(BuildContext context) {
-
-
     return BaseLayout(
 
       title: "DashBoard",
       currentIndex: 4,
-      child:  BlocBuilder<ElectricityCubit, ElectricityState>(
+      child: BlocBuilder<ElectricityCubit, ElectricityState>(
         builder: (context, state) {
           return state.when(
-            initial: () => Center(child: Text('Initial State')),
-            loading: () => Center(child: CircularProgressIndicator()),
+            initial: () => const Center(child: Text('Initial State')),
+            loading: () => const Center(child: CircularProgressIndicator()),
             loaded: (data) {
               double totalPower = calculateTotalPower(data);
               double cost = calculateCost(totalPower);
@@ -48,9 +46,9 @@ class _DashboardPageState extends State<DashboardPage> {
               return Column(
                 children: [
                   _buildHeaderSection(),
-                  SizedBox(height: 20),
+                  verticalSpaceMedium,
                   _buildGraphSection(data), // Ajoutez le graphique ici
-                  SizedBox(height: 20),
+                  verticalSpaceMedium,
                   _buildStatsSection(totalPower, cost, avgMonthly),
                 ],
               );
@@ -72,77 +70,82 @@ class _DashboardPageState extends State<DashboardPage> {
       if (!equipmentData.containsKey(entry.equipmentId)) {
         equipmentData[entry.equipmentId] = [];
         print(xValue);
-
       }
       equipmentData[entry.equipmentId]!.add(
-        FlSpot(²//0entry.power, xValue)  ,
+        FlSpot(entry.power, xValue),
+        );
+      }
 
+        return Container(
+        height: 300,
+        color: const Color(0xFF1D1D1D), // Fond sombre
+        padding: const EdgeInsets.all(smallSize + 6.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Usage', // Titre
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+            verticalSpaceTiny,
+            const Text(
+              '13 May - 19 May',
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            ),
+            verticalSpaceSmall,
+            SizedBox(
+              height: 200,
+              child: LineChart(
+                LineChartData(
+                  gridData: const FlGridData(show: false),
+                  titlesData: FlTitlesData(
+                    leftTitles: AxisTitles(sideTitles: SideTitles(
+                      showTitles: true, getTitlesWidget: (value, meta) {
+                      return Text(
+                        value.toString(), // Afficher la valeur sur l'axe gauche
+                        style: const TextStyle(color: Colors.white),
+                      );
+                    },),),
+                    bottomTitles: AxisTitles(sideTitles: SideTitles(
+                      showTitles: true, getTitlesWidget: (value, meta) {
+                      return Text(
+                        value.toString(), // Afficher la valeur sur l'axe gauche
+                        style: const TextStyle(color: Colors.white),
+                      );
+                    },)),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                  ),
+                  borderData: FlBorderData(show: true),
+                  lineBarsData: equipmentData.entries.map((entry) {
+                    return LineChartBarData(
+                      spots: entry.value,
+                      isCurved: true,
+                      gradient: const LinearGradient(
+                        colors: [
+                          Colors.purple,
+                          Colors.purpleAccent
+                        ], // Utilisez un dégradé ici
+                      ),
+                      dotData: const FlDotData(show: false),
+                      belowBarData: BarAreaData(
+                          show: false), // Si vous souhaitez afficher une zone sous la courbe
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
       );
     }
 
-    return Container(
-      height: 300,
-      color: Color(0xFF1D1D1D), // Fond sombre
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Usage', // Titre
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          SizedBox(height: 4),
-          Text(
-            '13 May - 19 May',
-            style: TextStyle(color: Colors.grey, fontSize: 12),
-          ),
-          SizedBox(height: 16),
-          SizedBox(
-            height: 200,
-            child: LineChart(
-              LineChartData(
-                gridData: FlGridData(show: false),
-                titlesData: FlTitlesData(
-                  leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: true,getTitlesWidget: (value, meta) {
-                    return Text(
-                      value.toString(), // Afficher la valeur sur l'axe gauche
-                      style: TextStyle(color: Colors.white),
-                    );
-                  },),),
-                  bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true,getTitlesWidget: (value, meta) {
-                    return Text(
-                      value.toString(), // Afficher la valeur sur l'axe gauche
-                      style: TextStyle(color: Colors.white),
-                    );
-                  },)),
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                ),
-                borderData: FlBorderData(show: true),
-                lineBarsData: equipmentData.entries.map((entry) {
-                  return LineChartBarData(
-                    spots: entry.value,
-                    isCurved: true,
-                    gradient: LinearGradient(
-                      colors: [Colors.purple, Colors.purpleAccent], // Utilisez un dégradé ici
-                    ),
-                    dotData: FlDotData(show: false),
-                    belowBarData: BarAreaData(show: false), // Si vous souhaitez afficher une zone sous la courbe
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatCard(String title, String value, Color color, String title2) {
+  Widget _buildStatCard(String title, String value, Color color,
+      String title2) {
     return Container(
       decoration:
       BoxDecoration(color:
@@ -158,19 +161,19 @@ class _DashboardPageState extends State<DashboardPage> {
             children:
             [
               Text(title, style:
-              TextStyle(color:
+              const TextStyle(color:
               Colors.white70)),
-              Spacer(),
+              const Spacer(),
               Text(value, style:
-              TextStyle(color:
+              const TextStyle(color:
               Colors.white,
                   fontSize:
                   20,
                   fontWeight:
                   FontWeight.bold)),
-              Spacer(),
+              const Spacer(),
               Text(title2, style:
-              TextStyle(color:
+              const TextStyle(color:
               Colors.white70)),
             ],
           )),
@@ -191,9 +194,15 @@ class _DashboardPageState extends State<DashboardPage> {
             16.0,
             children:
             [
-              _buildStatCard('Electricity Cost', '\XAF ${cost.toStringAsFixed(2)}', Colors.purple, 'This Week'),
-              _buildStatCard('Electricity Usage', '${totalPower.toStringAsFixed(2)} KWh', Colors.orange, 'This Week'),
-              _buildStatCard('Avg Monthly', '${avgMonthly.toStringAsFixed(2)} KWh', Colors.blue, 'This Week'),
+              _buildStatCard(
+                  'Electricity Cost', 'XAF ${cost.toStringAsFixed(2)}',
+                  Colors.purple, 'This Week'),
+              _buildStatCard(
+                  'Electricity Usage', '${totalPower.toStringAsFixed(2)} KWh',
+                  Colors.orange, 'This Week'),
+              _buildStatCard(
+                  'Avg Monthly', '${avgMonthly.toStringAsFixed(2)} KWh',
+                  Colors.blue, 'This Week'),
             ],
           )),
     );
@@ -205,12 +214,15 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Electricity Usage', style: TextStyle(fontSize: 18, color: Colors.white)),
+          const Text('Electricity Usage',
+              style: TextStyle(fontSize: 18, color: Colors.white)),
           Row(
             children: [
-              Text('Weekly', style: TextStyle(color: Colors.white70)),
-              Switch(value: true, onChanged: (value) {}, activeColor: Colors.purple),
-              Text('Monthly', style: TextStyle(color: Colors.white70)),
+              const Text('Weekly', style: TextStyle(color: Colors.white70)),
+              Switch(value: true,
+                  onChanged: (value) {},
+                  activeColor: Colors.purple),
+              const Text('Monthly', style: TextStyle(color: Colors.white70)),
             ],
           )
         ],

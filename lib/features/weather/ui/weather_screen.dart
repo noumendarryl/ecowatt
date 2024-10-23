@@ -6,16 +6,18 @@ import '../../../shared/widgets/weather_animations.dart';
 import '../../../shared/widgets/weather_info.dart';
 import '../logic/weather_cubit.dart';
 import '../logic/weather_state.dart';
-import '../repository/weather_repository.dart';
+import '../repositories/weather_repository.dart';
 
 @RoutePage()
 class WeatherScreen extends StatelessWidget {
+  const WeatherScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController addressController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Météo')),
+      appBar: AppBar(title: const Text('Météo')),
       body: BlocProvider(
         create: (context) => WeatherCubit(WeatherRepository())..getWeather(),
         child: Column(
@@ -24,21 +26,21 @@ class WeatherScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 controller: addressController,
-                decoration: InputDecoration(hintText: "Entrez une adresse"),
+                decoration: const InputDecoration(hintText: "Entrez une adresse"),
               ),
             ),
             ElevatedButton(
               onPressed: () {
                 context.read<WeatherCubit>().getWeatherFromAddress(addressController.text);
               },
-              child: Text("Rechercher"),
+              child: const Text("Rechercher"),
             ),
             Expanded(
               child: BlocBuilder<WeatherCubit, WeatherState>(
                 builder: (context, state) {
                   return state.when(
-                    initial: () => Center(child: Text('Appuyez sur le bouton pour charger la météo.')),
-                    loading: () => CircularProgressIndicator(),
+                    initial: () => const Center(child: Text('Appuyez sur le bouton pour charger la météo.')),
+                    loading: () => const CircularProgressIndicator(),
                     loaded: (weather)  {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,

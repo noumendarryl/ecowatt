@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:ecowatt/features/home/models/room_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,14 +23,6 @@ class RoomDetailsScreen extends StatefulWidget {
 }
 
 class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
-  bool _isDeviceActive = false;
-
-  void _toggleDevice(bool newValue) {
-    setState(() {
-      _isDeviceActive = newValue;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -77,7 +68,6 @@ class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
                                   mainAxisSpacing: mediumSize,
                                   children: List.generate(devices.length, (index) {
                                       return DeviceCard(
-
                                           device: DeviceModel(
                                             did:devices[index].did,
                                               name: devices[index].name,

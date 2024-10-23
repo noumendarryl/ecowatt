@@ -1,8 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:ecowatt/features/device/logic/device_cubit.dart';
 import 'package:ecowatt/features/home/models/room_model.dart';
-import 'package:ecowatt/shared/widgets/BaseLayout.dart';
+import 'package:ecowatt/shared/widgets/base_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -128,7 +127,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                               .scrim,
                                         ),
                                         onPressed: () {
-                                          context.router.pop();
+                                          context.router.maybePop();
                                         },
                                       ),
                                     ),

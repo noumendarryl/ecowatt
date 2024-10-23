@@ -9,10 +9,10 @@ class DeviceMeasurementCubit extends Cubit<DeviceMeasurementState> {
   DeviceMeasurementCubit(this.deviceMeasurementRepository) : super(const DeviceMeasurementInitial());
 
   // Retrieve measurements for a specific device
-  Future<void> fetchDeviceMeasurements(String did) async {
+  Future<void> fetchDeviceMeasurements(String mid, String did) async {
     try {
       emit(const DeviceMeasurementLoading());
-      final measurements = await deviceMeasurementRepository.getDeviceMeasurements(did);
+      final measurements = await deviceMeasurementRepository.getDeviceMeasurements(mid, did);
       emit(DeviceMeasurementsLoaded(measurements));
     } catch (e) {
       emit(const DeviceMeasurementError('Failed to load device measurements.'));

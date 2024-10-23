@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 class WeatherAnimation extends StatelessWidget {
   final double temperature;
 
-  WeatherAnimation({required this.temperature});
+  const WeatherAnimation({super.key, required this.temperature});
 
   @override
   Widget build(BuildContext context) {

@@ -9,6 +9,7 @@ import '../../../shared/widgets/footer.dart';
 import '../../../shared/widgets/form_layout.dart';
 import '../../../shared/widgets/text_rich.dart';
 import '../logic/auth_cubit.dart';
+import '../logic/auth_state.dart';
 
 @RoutePage()
 class Register extends StatelessWidget {

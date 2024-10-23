@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:ecowatt/features/device/logic/device_cubit.dart';
 import 'package:ecowatt/features/device/logic/device_state.dart';
@@ -12,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../routing/app_router.gr.dart';
-import '../../../shared/widgets/BaseLayout.dart';
+import '../../../shared/widgets/base_layout.dart';
 import '../../../shared/widgets/device_card.dart';
 import '../../device/models/device_model.dart';
 import '../models/room_model.dart';
@@ -65,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () => {context.pushRoute(RoomListRoute())},
+                              onTap: () => {context.pushRoute(const RoomListRoute())},
                               child: Text(
                                 "See all rooms",
                                 style: TextStyle(

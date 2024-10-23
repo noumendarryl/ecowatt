@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../model/electricity_data_model.dart';
+import '../models/electricity_data_model.dart';
 
 class ElectricityRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

@@ -1,10 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../model/electricity_data_model.dart';
-
+import '../models/electricity_data_model.dart';
 
 part 'electricity_state.freezed.dart';
-
 
 @freezed
 class ElectricityState with _$ElectricityState {

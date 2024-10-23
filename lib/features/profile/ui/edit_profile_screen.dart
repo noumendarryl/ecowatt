@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-
 import '../../../shared/constants/ui_helpers.dart';
 import '../logic/edit_profile_cubit.dart';
 import '../logic/edit_profile_state.dart';
@@ -32,7 +31,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   Future<void> _pickImage() async {
     final pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
@@ -40,14 +39,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-
-
   @override
   void initState() {
     super.initState();
     context.read<EditProfileCubit>().loadUser();
   }
-
 
   void _saveProfile() {
     if (_formKey.currentState!.validate()) {
@@ -61,31 +57,29 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         username: _usernameController.text,
         displayName: _displayNameController.text,
         email: _emailController.text,
-        photoURL: _profileImage != null ? _profileImage!.path : '', // Utilisez le chemin ou une URL
+        photoURL: _profileImage != null
+            ? _profileImage!.path
+            : '', // Utilisez le chemin ou une URL
       );
 
       // Appelez la méthode updateUser avec le UserModel et l'image
-      context.read<EditProfileCubit>().updateUser(updatedUser, image: _profileImage);
+      context
+          .read<EditProfileCubit>()
+          .updateUser(updatedUser, image: _profileImage);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocListener<EditProfileCubit, EditProfileState>(
       listener: (context, state) {
         state.maybeWhen(
           updated: (user) {
-
-
             Navigator.of(context).pop();
           },
-          error: (message) {
-
-          },
+          error: (message) {},
           orElse: () {},
         );
-
       },
       child: BlocBuilder<EditProfileCubit, EditProfileState>(
         builder: (context, state) {
@@ -94,16 +88,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               title: const Center(child: Text('Edit Profile')),
             ),
             body: Container(
-              padding: const EdgeInsets.symmetric(horizontal: smallSize, vertical: largeSize),
-              child: FormLayout(isPassword: false,formKey: _formKey, label: 'Save', onAction:_saveProfile, isAvatar: true,
+              padding: const EdgeInsets.symmetric(
+                  horizontal: smallSize, vertical: largeSize),
+              child: FormLayout(
+                isPassword: false,
+                formKey: _formKey,
+                label: 'Save',
+                onAction: _saveProfile,
+                isAvatar: true,
                 photoUrl: state.maybeWhen(
-                  loaded: (user) => user.photoURL?.isNotEmpty == true ? user.photoURL : null,
+                  loaded: (user) =>
+                      user.photoURL.isNotEmpty == true ? user.photoURL : null,
                   orElse: () => null,
                 ),
-                avatar: _profileImage, // Image de profil locale
+                avatar: _profileImage,
+                // Image de profil locale
                 isDisplayName: true,
                 displayNameValue: state.maybeWhen(
-                  loaded: (user) => user?.displayName,
+                  loaded: (user) => user.displayName,
                   orElse: () => '',
                 ),
                 displayNameController: _displayNameController,
@@ -122,7 +124,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             ),
           );
-
         },
       ),
     );

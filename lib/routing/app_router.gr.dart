@@ -22,7 +22,7 @@ import 'package:ecowatt/features/home/ui/room_details_screen.dart' as _i9;
 import 'package:ecowatt/features/home/ui/room_list_screen.dart' as _i10;
 import 'package:ecowatt/features/profile/ui/edit_profile_screen.dart' as _i4;
 import 'package:ecowatt/features/profile/ui/user_profile_screen.dart' as _i13;
-import 'package:ecowatt/features/recommandations/ui/recommendation_screen.dart'
+import 'package:ecowatt/features/recommendations/ui/recommendation_screen.dart'
     as _i7;
 import 'package:ecowatt/features/splashscreen/ui/splash_screen.dart' as _i12;
 import 'package:ecowatt/features/weather/ui/weather_screen.dart' as _i14;
@@ -79,7 +79,7 @@ abstract class $AppRouter extends _i16.RootStackRouter {
     RecommendationsRoute.name: (routeData) {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i7.RecommendationsScreen(),
+        child: const _i7.RecommendationsScreen(),
       );
     },
     Register.name: (routeData) {
@@ -121,13 +121,13 @@ abstract class $AppRouter extends _i16.RootStackRouter {
     UserProfileRoute.name: (routeData) {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i13.UserProfileScreen(),
+        child: const _i13.UserProfileScreen(),
       );
     },
     WeatherRoute.name: (routeData) {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i14.WeatherScreen(),
+        child: const _i14.WeatherScreen(),
       );
     },
     WelcomeRoute.name: (routeData) {
@@ -308,7 +308,7 @@ class RegisterArgs {
 /// [_i9.RoomDetailsScreen]
 class RoomDetailsRoute extends _i16.PageRouteInfo<RoomDetailsRouteArgs> {
   RoomDetailsRoute({
-    _i17.Key? key,
+    _i19.Key? key,
     required _i20.RoomModel roomModel,
     List<_i16.PageRouteInfo>? children,
   }) : super(
@@ -332,7 +332,7 @@ class RoomDetailsRouteArgs {
     required this.roomModel,
   });
 
-  final _i17.Key? key;
+  final _i19.Key? key;
 
   final _i20.RoomModel roomModel;
 

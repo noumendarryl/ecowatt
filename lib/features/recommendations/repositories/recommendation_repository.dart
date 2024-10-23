@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../model/recommendation_model.dart';
+import '../models/recommendation_model.dart';
 
 
 class RecommendationRepository {

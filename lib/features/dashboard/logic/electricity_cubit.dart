@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../repository/electricity_repository.dart';
+import '../repositories/electricity_repository.dart';
 
 import 'electricity_state.dart';
 
@@ -16,13 +16,13 @@ class ElectricityCubit extends Cubit<ElectricityState> {
       final data = await _repository.fetchElectricityData(userId);
 
       if (data.isEmpty) {
-        emit(ElectricityState.error('No electricity data found.'));
+        emit(const ElectricityState.error('No electricity data found.'));
         return; // Quitte la méthode si aucune donnée n'est trouvée
       }
 
       emit(ElectricityState.loaded(data));
     } catch (e) {
-      emit(ElectricityState.error('Failed to load electricity data. Please try again later.'));
+      emit(const ElectricityState.error('Failed to load electricity data. Please try again later.'));
       print('Error loading electricity data: ${e.toString()}'); // Log l'erreur pour le débogage
     }
   }

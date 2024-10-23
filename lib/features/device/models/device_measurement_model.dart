@@ -24,12 +24,12 @@ class DeviceMeasurementModel {
   }
 
   // Convert to JSON
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'mid': mid,
-  //     'voltage': voltage,
-  //     'power': power,
-  //     'timestamp': timestamp.toIso8601String(),
-  //   };
-  // }
+  Map<String, dynamic> toJson() {
+    return {
+      'mid': mid,
+      'voltage': voltage,
+      'power': power,
+      'timestamp': timestamp.toIso8601String(),
+    };
+  }
 }

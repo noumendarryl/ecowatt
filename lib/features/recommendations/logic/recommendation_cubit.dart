@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../repository/recommendations_repository.dart';
+import '../repositories/recommendation_repository.dart';
 import 'recommendation_state.dart';
 
 class RecommendationCubit extends Cubit<RecommendationState> {

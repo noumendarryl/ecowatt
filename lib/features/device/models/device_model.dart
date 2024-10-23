@@ -1,5 +1,3 @@
-import 'package:ecowatt/features/device/models/device_measurement_model.dart';
-
 class DeviceModel {
   String? did;
   String name;

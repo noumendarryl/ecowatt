@@ -1,3 +1,4 @@
+import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
 class BuildFloatingActionButton extends StatelessWidget {
@@ -9,9 +10,9 @@ class BuildFloatingActionButton extends StatelessWidget {
       onPressed: () {
         // Logique pour l'action centrale
       },
-      child: Icon(Icons.add, size: 30),
       backgroundColor: Colors.purple,
       elevation: 5,
+      child: const Icon(Icons.add, size: mediumSize),
     );
   }
 }

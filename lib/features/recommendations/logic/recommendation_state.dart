@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../model/recommendation_model.dart';
+import '../models/recommendation_model.dart';
 
 
 part 'recommendation_state.freezed.dart';

@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/widgets/geocoding.dart';
 
-import '../repository/weather_repository.dart';
+import '../repositories/weather_repository.dart';
 import 'weather_state.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -19,7 +19,7 @@ class WeatherCubit extends Cubit<WeatherState> {
       print (weather);
       emit(WeatherState.loaded(weather));
     } catch (e) {
-      emit(WeatherState.error('Erreur lors de la récupération des données météo'));
+      emit(const WeatherState.error('Erreur lors de la récupération des données météo'));
     }
   }
   Future<void> getWeatherFromAddress(String address) async {
@@ -29,7 +29,7 @@ class WeatherCubit extends Cubit<WeatherState> {
       final weather = await weatherRepository.fetchWeather(position.latitude, position.longitude);
       emit(WeatherState.loaded(weather));
     } catch (e) {
-      emit(WeatherState.error('Erreur lors de la récupération des données météo'));
+      emit(const WeatherState.error('Erreur lors de la récupération des données météo'));
     }
   }
 

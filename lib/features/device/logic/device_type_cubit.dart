@@ -13,7 +13,7 @@ class DeviceTypeCubit extends Cubit<DeviceTypeState> {
     emit(const DeviceTypeLoading());
 
     try {
-      final deviceTypes = await _deviceTypeRepository.getDeviceTypes(); // Can be from Firebase or locally
+      final deviceTypes = _deviceTypeRepository.getDeviceTypes(); // Can be from Firebase or locally
       emit(DeviceTypeLoaded(deviceTypes));
     } catch (e) {
       emit(const DeviceTypeError("Failed to load device types."));

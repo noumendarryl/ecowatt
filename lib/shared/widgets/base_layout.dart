@@ -1,11 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/auth/ui/register.dart';
 import '../../routing/app_router.gr.dart';
 import 'bottom_navigation.dart';
-import 'customAppBar.dart';
-import 'floatingActionButton.dart';
+import 'custom_app_bar.dart';
+import 'floating_action_button.dart';
 
 
 class BaseLayout extends StatelessWidget {
@@ -20,7 +19,7 @@ class BaseLayout extends StatelessWidget {
 
 
   const BaseLayout({
-    Key? key,
+    super.key,
     required this.child,
 
 
@@ -29,20 +28,20 @@ class BaseLayout extends StatelessWidget {
     required this.currentIndex,
     this.appBar, required this.title,
 
-  }) : super(key: key);
+  });
 
   void _onTap(BuildContext context, int index) {
     // Logique de navigation pour toutes les pages
     if (index == 0) {
-      context.router.push(HomeRoute());
+      context.router.push(const HomeRoute());
     } else if (index == 1) {
-      context.router.push(SearchDeviceRoute());
+      context.router.push(const SearchDeviceRoute());
     } else if (index == 2) {
-      context.router.push(AddDeviceRoute());
+      context.router.push(const AddDeviceRoute());
     } else if (index == 3) {
-      context.router.push(RecommendationsRoute());
+      context.router.push(const RecommendationsRoute());
     } else if (index == 4) {
-      context.router.push(DashboardRoute());
+      context.router.push(const DashboardRoute());
     }
   }
 
@@ -59,7 +58,7 @@ class BaseLayout extends StatelessWidget {
         onTap:  (index) => _onTap(context, index),
       ),
       floatingActionButton: showFloatingActionButton
-          ? BuildFloatingActionButton()
+          ? const BuildFloatingActionButton()
           : null,
     );
   }

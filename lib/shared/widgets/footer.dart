@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../features/auth/logic/auth_cubit.dart';
+import '../../features/auth/logic/auth_state.dart';
 import 'button.dart';
 
 class Footer extends StatelessWidget {
