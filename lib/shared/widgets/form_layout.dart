@@ -1,20 +1,25 @@
+import 'dart:io';
+
 import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:ecowatt/shared/widgets/user_avatar.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../utils/formatters.dart';
 import 'button.dart';
 import 'input.dart';
 
-class FormLayout extends StatelessWidget {
+class FormLayout extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final String label;
   final Function() onAction;
   final bool? isAvatar;
+  final String? photoUrl;
+  File? avatar;
   final bool? isDisplayName;
   final String? displayNameValue;
   final TextEditingController? displayNameController;
@@ -32,12 +37,9 @@ class FormLayout extends StatelessWidget {
   final String? phoneValue;
   final TextEditingController? phoneController;
   final bool? isLoading;
-  final bool? emailDisabled;
   final bool? isCancel;
   final double? gap;
 
-  final RxBool _isPasswordVisible = true.obs;
-  final RxBool _isConfirmPasswordVisible = true.obs;
 
   FormLayout({
     super.key,
@@ -62,55 +64,73 @@ class FormLayout extends StatelessWidget {
     this.phoneValue,
     this.phoneController,
     this.isLoading = false,
-    this.emailDisabled = false,
     this.isCancel = false,
-    this.gap = 5.0,
+    this.gap = 5.0, this.photoUrl, this.avatar,
   });
 
-  static String? avatar;
+  @override
+  State<FormLayout> createState() => _FormLayoutState();
+}
+
+class _FormLayoutState extends State<FormLayout> {
+  final RxBool _isPasswordVisible = true.obs;
+
+  final RxBool _isConfirmPasswordVisible = true.obs;
+
+  //static String? avatar;
+  Future<void> _pickImage() async {
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        widget.avatar = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: widget.formKey,
       child: Wrap(
         alignment: WrapAlignment.center,
         runSpacing: mediumSize,
         children: [
-          if (isAvatar!)
-            UserAvatar(onAction: () async {
-              FilePickerResult? result = await FilePicker.platform.pickFiles(
-                type: FileType.image,
-              );
-              if (result != null) {
-                print(result.files.single.path!);
-              }
-            }),
+          if (widget.isAvatar!)
+            UserAvatar( // Utiliser UserAvatar ici
+              width: 100.0, // Définissez la largeur souhaitée
+              height: 100.0, // Définissez la hauteur souhaitée
+              avatar: widget.avatar, // Utilisez _profileImage pour l'image locale
+              photoURL: widget.photoUrl, // Utilisez photoURL de l'utilisateur
+              onAction: () {
+                // Ouvrir le sélecteur d'images lorsque l'utilisateur clique sur l'avatar
+                _pickImage();
+              },
+            ),
           Wrap(
-            runSpacing: smallSize + gap!,
+            runSpacing: smallSize + widget.gap!,
             children: [
-              if (isDisplayName!)
+              if (widget.isDisplayName!)
                 Input(
                   label: "Display Name",
-                  controller: displayNameController!,
+                  controller: widget.displayNameController!,
                   keyboardType: TextInputType.text,
-                  suffixIcon: const Icon(CupertinoIcons.person),
+                  suffixIcon: const Icon(Icons.person),
                 ),
-              if (isUsername!)
+              if (widget.isUsername!)
                 Input(
                   label: "Username",
-                  controller: usernameController!,
+                  controller: widget.usernameController!,
                   keyboardType: TextInputType.text,
-                  suffixIcon: const Icon(CupertinoIcons.person),
+                  suffixIcon: const Icon(Icons.person),
                 ),
-              if (isEmail!)
+              if (widget.isEmail!)
                 Input(
                   label: "Email address",
-                  controller: emailController!,
+                  controller: widget.emailController!,
                   keyboardType: TextInputType.emailAddress,
-                  disabled: emailDisabled,
                   suffixIcon: const Icon(
-                    CupertinoIcons.mail,
+                    Icons.email,
                   ),
                   validator: (String? value) {
                     if (!Formatters.isEmailValid(value!)) {
@@ -119,17 +139,17 @@ class FormLayout extends StatelessWidget {
                     return null;
                   },
                 ),
-              if (isPassword!)
+              if (widget.isPassword!)
                 Obx(
                   () => Input(
                     label: "Password",
                     isObscured: _isPasswordVisible.value,
-                    controller: passwordController!,
+                    controller: widget.passwordController!,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (String? value) {
                       return Formatters.checkPassword(value!,
-                          confirmPassword: isConfirmPassword!
-                              ? confirmPasswordController!.text.trim()
+                          confirmPassword: widget.isConfirmPassword!
+                              ? widget.confirmPasswordController!.text.trim()
                               : null);
                     },
                     suffixIcon: IconButton(
@@ -138,22 +158,22 @@ class FormLayout extends StatelessWidget {
                       },
                       icon: Icon(
                         _isPasswordVisible.value
-                            ? CupertinoIcons.eye_slash
-                            : CupertinoIcons.eye,
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
                     ),
                   ),
                 ),
-              if (isConfirmPassword!)
+              if (widget.isConfirmPassword!)
                 Obx(
                   () => Input(
                     label: "Confirm Password",
                     isObscured: _isConfirmPasswordVisible.value,
-                    controller: confirmPasswordController!,
+                    controller: widget.confirmPasswordController!,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (String? value) {
                       if (!Formatters.isPasswordConfirmed(
-                          passwordController!.text.trim(), value)) {
+                          widget.passwordController!.text.trim(), value)) {
                         return "Password and confirm password must be the same";
                       }
                       return null;
@@ -165,35 +185,35 @@ class FormLayout extends StatelessWidget {
                       },
                       icon: Icon(
                         _isConfirmPasswordVisible.value
-                            ? CupertinoIcons.eye_slash
-                            : CupertinoIcons.eye,
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
                     ),
                   ),
                 ),
-              if (isNumber!)
+              if (widget.isNumber!)
                 Input(
                   label: "Phone Number",
-                  controller: phoneController!,
+                  controller: widget.phoneController!,
                   keyboardType: TextInputType.number,
                   suffixIcon: const Icon(
-                    CupertinoIcons.phone,
+                    Icons.phone,
                   ),
                 ),
             ],
           ),
           Wrap(
-            runSpacing: isCancel! ? mediumSize : 0.0,
+            runSpacing: widget.isCancel! ? mediumSize : 0.0,
             children: [
-              Button(label: label, isLoading: isLoading, onPressed: onAction),
-              if (isCancel!)
+              Button(label: widget.label, isLoading: widget.isLoading, onPressed: widget.onAction),
+              if (widget.isCancel!)
                 Button(
                     label: "Cancel",
                     primary: false,
                     outlined: true,
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.reset();
+                      if (widget.formKey.currentState!.validate()) {
+                        widget.formKey.currentState!.reset();
                       }
                     })
             ],

@@ -7,7 +7,7 @@ class RoomUtils {
       case "Bed Room":
         return Theme.of(context).colorScheme.primary;
       case "Kitchen":
-        return Theme.of(context).colorScheme.secondary.withOpacity(0.5);
+        return Theme.of(context).colorScheme.secondary;
       case "Living Room":
         return Theme.of(context).colorScheme.secondary;
       case "Dining Room":
@@ -28,17 +28,17 @@ class RoomUtils {
       case "Bed Room":
         return CupertinoIcons.bed_double_fill;
       case "Kitchen":
-        return CupertinoIcons.flame;
+        return CupertinoIcons.burn;
       case "Living Room":
-        return Icons.chair;
+        return CupertinoIcons.tv;
       case "Dining Room":
-        return Icons.table_restaurant;
+        return CupertinoIcons.square_grid_2x2_fill;
       case "Office Room":
         return CupertinoIcons.desktopcomputer;
       case "Bath Room":
         return CupertinoIcons.drop_fill;
       case "Laundry Room":
-        return Icons.local_laundry_service;
+        return CupertinoIcons.square_stack_3d_up_fill;
       default:
         return CupertinoIcons.car_detailed;
     }

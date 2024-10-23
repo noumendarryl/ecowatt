@@ -45,13 +45,11 @@ class _DeviceCardState extends State<DeviceCard> {
                     setState(() {
                       widget.device.isActive = newValue;
                     });
-                    // Update the 'isActive' field in the Firestore document
                     await FirebaseFirestore.instance
                         .collection(
-                            'devices') // Ensure this is your Firestore collection name
+                        'devices') // Ensure this is your Firestore collection name
                         .doc(widget.device.did)
                         .update({'isActive': newValue});
-                    // Call callback
                   },
                   activeColor: Colors.green,
                   inactiveThumbColor: Theme.of(context).colorScheme.onTertiary,
@@ -66,34 +64,30 @@ class _DeviceCardState extends State<DeviceCard> {
               ],
             ),
             verticalSpaceMedium,
-
             // Device Information
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.device.name,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    // softWrap: true,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment:  CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.device.name,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                    fontWeight: FontWeight.bold,
                   ),
-                  verticalSpaceSmall,
-                  Text(
-                    widget.device.isActive ? "ON" : "OFF",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onTertiary,
-                      fontSize:
-                          Theme.of(context).textTheme.labelSmall!.fontSize,
-                    ),
+                  // softWrap: true,
+                ),
+                verticalSpaceSmall,
+                Text(
+                  widget.device.isActive ? "ON" : "OFF",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
+                    fontSize: Theme.of(context).textTheme.labelSmall!.fontSize,
                   ),
-                ],
-              ),
-            )
+                ),
+              ],
+            ),
           ],
         ),
       ),

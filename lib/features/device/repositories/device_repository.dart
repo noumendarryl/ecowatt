@@ -28,8 +28,9 @@ class DeviceRepository {
 
   // Create a new device
   Future<void> createDevice(DeviceModel device) async {
-    DocumentReference deviceRef =
-        FirebaseFirestore.instance.collection('devices').doc();
+    DocumentReference deviceRef = FirebaseFirestore.instance
+        .collection('devices')
+        .doc();
 
     DeviceModel newDevice = DeviceModel(
         did: deviceRef.id,
@@ -45,9 +46,9 @@ class DeviceRepository {
     await deviceRef // Use device ID as document ID
         .set(newDevice.toJson());
 
-    if (device.measurements!.isNotEmpty) {
-      await deviceRef.collection('measurements').add(newDevice.measurements!);
-    }
+    await deviceRef // Use device ID as document ID
+        .collection('measurements')
+        .add(newDevice.measurements!);
   }
 
   // Update an existing device

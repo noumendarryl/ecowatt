@@ -1,10 +1,12 @@
+import 'package:ecowatt/features/device/models/device_measurement_model.dart';
+
 class DeviceModel {
   String? did;
   String name;
   String type; // Type of device
   String rid; // Foreign key to the room
   String uid; // Foreign key to the user
-  String? sensorId; // Foreign key to the sensor
+  String? sensorId; // Foreign key to the user
   String? description;
   Map<String, dynamic>? measurements;
   bool isActive = false; // Device ON/OFF value

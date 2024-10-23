@@ -24,6 +24,14 @@ class RoomDetailsScreen extends StatefulWidget {
 }
 
 class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
+  bool _isDeviceActive = false;
+
+  void _toggleDevice(bool newValue) {
+    setState(() {
+      _isDeviceActive = newValue;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -69,14 +77,17 @@ class _RoomDetailsScreenState extends State<RoomDetailsScreen> {
                                   mainAxisSpacing: mediumSize,
                                   children: List.generate(devices.length, (index) {
                                       return DeviceCard(
+
                                           device: DeviceModel(
+                                            did:devices[index].did,
                                               name: devices[index].name,
                                               type: devices[index].type,
                                               rid: devices[index].rid,
                                               uid: FirebaseAuth.instance.currentUser!.uid,
                                               isActive: devices[index].isActive,
                                               isSmartDevice:
-                                              devices[index].isSmartDevice));
+                                              devices[index].isSmartDevice),
+                                          );
                                     },
                                   ),
                                 ),

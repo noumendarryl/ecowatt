@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../routing/app_router.gr.dart';
+import '../../../shared/widgets/BaseLayout.dart';
 import '../../../shared/widgets/device_card.dart';
 import '../../device/models/device_model.dart';
 import '../models/room_model.dart';
@@ -34,10 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor:
-            Theme.of(context).colorScheme.onTertiary.withOpacity(0.3),
-        body: SingleChildScrollView(
+    return BaseLayout(
+        title: 'HOME',
+
+        currentIndex:0,
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: smallSize),
             child: Column(
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: List.generate(4, (index) {
                                         return GestureDetector(
                                           onTap: () {
-                                            context.read<RoomCubit>().fetchRoomById(rooms[index].rid!);
+                                            context.pushRoute(RoomDetailsRoute(roomModel: rooms[index]));
                                           },
                                           child: Card(
                                               color: RoomUtils()
@@ -220,13 +222,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: List.generate(4, (index) {
                                         return DeviceCard(
                                             device: DeviceModel(
+                                              did: devices[index].did,
                                                 name: devices[index].name,
                                                 type: devices[index].type,
                                                 rid: devices[index].rid,
                                                 uid: FirebaseAuth.instance.currentUser!.uid,
                                                 isActive: devices[index].isActive,
                                                 isSmartDevice:
-                                                    devices[index].isSmartDevice));
+                                                    devices[index].isSmartDevice),
+                                            );
                                       })),
                                 ),
                                 error: (error) => Center(
@@ -244,6 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     )),
+
               ],
             ),
           ),

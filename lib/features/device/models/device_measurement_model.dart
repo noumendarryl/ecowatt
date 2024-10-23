@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class DeviceMeasurementModel {
   final String? mid; // / Intensity in Amperes
   final double voltage; // Voltage in Volts
@@ -17,17 +19,17 @@ class DeviceMeasurementModel {
       mid: data['mid'],
       voltage: data['voltage'],
       power: data['power'],
-      timestamp: DateTime.parse(data['timestamp']),
+      timestamp: (data['timestamp'] as Timestamp).toDate(),
     );
   }
 
   // Convert to JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'mid': mid,
-      'voltage': voltage,
-      'power': power,
-      'timestamp': timestamp.toIso8601String(),
-    };
-  }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'mid': mid,
+  //     'voltage': voltage,
+  //     'power': power,
+  //     'timestamp': timestamp.toIso8601String(),
+  //   };
+  // }
 }

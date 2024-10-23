@@ -17,18 +17,18 @@ class Button extends StatelessWidget {
 
   const Button(
       {super.key,
-      required this.label,
-      this.width,
-      this.height,
-      this.radius,
-      this.isLoading = false,
-      this.primary = true,
-      this.tertiary = false,
-      this.outlined = false,
-      this.disabled = false,
-      this.prefix,
-      this.suffix,
-      required this.onPressed});
+        required this.label,
+        this.width,
+        this.height,
+        this.radius,
+        this.isLoading = false,
+        this.primary = true,
+        this.tertiary = false,
+        this.outlined = false,
+        this.disabled = false,
+        this.prefix,
+        this.suffix,
+        required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +56,13 @@ class Button extends StatelessWidget {
               ),
             isLoading!
                 ? Center(
-                    child: SizedBox(
-                    width: 25.0,
-                    height: 25.0,
-                    child: CircularProgressIndicator(
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                  ))
+                child: SizedBox(
+                  width: 25.0,
+                  height: 25.0,
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ))
                 : Text(label, style: _getButtonTextStyle(context)),
             if (suffix != null)
               Padding(

@@ -27,10 +27,16 @@ android {
         applicationId = "com.ecowatt.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23
+        minSdkVersion 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled true
+    }
+    dependencies {
+    
+
+        implementation 'com.android.support:multidex:2.0.1'
     }
 
     buildTypes {

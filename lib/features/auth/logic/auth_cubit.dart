@@ -3,8 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../profile/models/user_profile_model.dart';
-import '../repositories/auth_repository.dart';
+
+import '../../profile/models/user_model.dart';
+import '../repository/auth_repository.dart';
 
 part 'auth_state.dart';
 
@@ -37,7 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final user = await _authRepository.signUpWithEmail(email, password);
       if (user != null) {
-        UserProfileModel userProfile = UserProfileModel(
+        UserModel userProfile = UserModel(
           uid: user.uid,
           photoURL:  '',
           username: username,
@@ -87,7 +88,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(const AuthState.loading());
       final user = await _authRepository.signInWithGoogle();
       if (user != null) {
-        UserProfileModel userProfile = UserProfileModel(
+        UserModel userProfile = UserModel(
           uid: user.uid,
           photoURL: '',
           username: '',
