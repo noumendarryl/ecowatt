@@ -6,7 +6,7 @@ part 'recommendation_model.g.dart';
 @freezed
 class RecommendationModel with _$RecommendationModel {
   const factory RecommendationModel({
-    required String titre,
+    required String title,
     required String description,
   }) = _RecommendationModel;
 

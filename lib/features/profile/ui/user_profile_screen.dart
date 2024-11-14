@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,57 +75,108 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             child: user.photoURL.isEmpty
                 ? Icon(
                     Icons.person,
-                    size: 70,
-                    color: Colors.grey[700],
+                    size: largeSize,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ) // Afficher une icône si `photoURL` est vide
                 : null,
           ),
-          const SizedBox(height: 10),
+          verticalSpaceSmall,
           Text(
             user.displayName,
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.scrim,
+              fontSize: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .fontSize,
+              fontWeight: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .fontWeight,
             ),
           ),
           const SizedBox(height: 5),
           Text(
             '@${user.username}',
-            style: const TextStyle(
-              fontSize: 20,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiary,
+              fontSize: Theme
+                  .of(context)
+                  .textTheme
+                  .bodySmall!
+                  .fontSize,
             ),
           ),
           const SizedBox(height: 15),
           CustomElevatedButton(
             btnLabel: 'Edit Profile',
-            btnColor: Colors.purple,
+            btnColor: Theme.of(context).colorScheme.primary,
             onPressed: () {
               // Logique pour modifier le profil
+              context.pushRoute(const EditProfileRoute());
             },
           ),
           const SizedBox(height: 30),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            leading: Icon(
+              Icons.settings,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
+            title: Text(
+              'Settings',
+              style: TextStyle(color: Theme.of(context).colorScheme.scrim),
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.devices),
-            title: const Text('Devices Management'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            leading: Icon(
+              Icons.devices,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
+            title: Text(
+              'Device Management',
+              style: TextStyle(color: Theme.of(context).colorScheme.scrim),
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('Information'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            leading: Icon(
+              Icons.info,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
+            title: Text(
+              'About us',
+              style: TextStyle(color: Theme.of(context).colorScheme.scrim),
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
             onTap: () {},
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Log out'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            leading: Icon(
+              Icons.logout,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
+            title: Text(
+              'Logout',
+              style: TextStyle(color: Theme.of(context).colorScheme.scrim),
+            ),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
             onTap: () {
               context.read<AuthCubit>().signOut;
               context.pushRoute(const WelcomeRoute());

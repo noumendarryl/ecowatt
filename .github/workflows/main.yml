@@ -20,10 +20,10 @@ jobs:
         with:
           flutter-version: '3.x'
       - run: flutter pub get
-      - run: flutter build apk --debug --split-per-abi
+      - run: flutter build appbundle
       - name: Push to releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/debug/*"
+          artifacts: "build/**/outputs/**/*.aab"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}

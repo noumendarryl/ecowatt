@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/weather_model.dart';
 
-
 class WeatherRepository {
   final String apiKey = '787ae82d20123ee66c52b89e0cdec328';
 
@@ -19,10 +18,8 @@ class WeatherRepository {
         description: data['weather'][0]['description'],
         icon: data['weather'][0]['icon'],
       );
-
     } else {
       throw Exception('Échec de chargement des données météo');
     }
-
   }
 }

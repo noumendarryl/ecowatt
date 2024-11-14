@@ -15,19 +15,16 @@ class BaseLayout extends StatelessWidget {
   final bool showFloatingActionButton;
    // AppBar personnalisé
   final int currentIndex;
-  final String title;
+  final String? title;
 
 
   const BaseLayout({
     super.key,
     required this.child,
-
-
     this.showFloatingActionButton = false,
-
     required this.currentIndex,
-    this.appBar, required this.title,
-
+    this.appBar,
+    this.title,
   });
 
   void _onTap(BuildContext context, int index) {
@@ -48,9 +45,8 @@ class BaseLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar ?? CustomAppbar(title: title),
-
-      backgroundColor: Theme.of(context).colorScheme.onTertiary,
+      appBar: appBar ?? CustomAppBar(title: title!),
+      backgroundColor: Theme.of(context).colorScheme.onTertiary.withOpacity(0.3),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: child,
       bottomNavigationBar: CustomBottomNavigationBar(

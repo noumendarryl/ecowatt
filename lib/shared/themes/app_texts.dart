@@ -30,20 +30,20 @@ class AppTexts{
     bodyLarge: const TextStyle(
       fontFamily: _fontFamily,
       fontWeight: FontWeight.w700,
-      fontSize: 22.0,
+      fontSize: 18.0,
     ),
     bodyMedium: const TextStyle(
       fontFamily: _fontFamily,
       fontWeight: FontWeight.w500,
-      fontSize: 20.0,
+      fontSize: 16.0,
     ),
     bodySmall: const TextStyle(
       fontFamily: _fontFamily,
-      fontSize: 18.0,
+      fontSize: 14.0,
     ),
     labelSmall: const TextStyle(
       fontFamily: _fontFamily,
-      fontSize: 16.0,
+      fontSize: 12.0,
     ),
   );
 }

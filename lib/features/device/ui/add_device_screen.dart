@@ -46,6 +46,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
     List<RoomModel> fetchedRooms = await roomRepo.getAllRooms();
     setState(() {
       rooms = fetchedRooms;
+      selectedRoomId = rooms[0].rid;
     });
   }
 
@@ -59,9 +60,63 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
-      title: 'Add Devices',
+      appBar: AppBar(
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .onSurface,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Theme
+                .of(context)
+                .colorScheme
+                .onTertiary,
+            size: mediumSize,
+          ),
+          onPressed: () {
+            context.router.maybePop();
+          },
+        ),
+        title: Text(
+          "Add Devices",
+          style: TextStyle(
+            color: Theme
+                .of(context)
+                .colorScheme
+                .scrim,
+            fontFamily: Theme
+                .of(context)
+                .textTheme
+                .titleSmall!
+                .fontFamily,
+            fontSize: Theme
+                .of(context)
+                .textTheme
+                .titleSmall!
+                .fontSize,
+            fontWeight: Theme
+                .of(context)
+                .textTheme
+                .titleSmall!
+                .fontWeight,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+        actions: [
+          Icon(
+            CupertinoIcons.ellipsis_vertical,
+            color: Theme
+                .of(context)
+                .colorScheme
+                .onTertiary,
+            size: mediumSize,
+          ),
+        ],
+      ),
       currentIndex: 2,
-      child: Padding(padding: const EdgeInsets.all(mediumSize),
+      child: Padding(padding: const EdgeInsets.only(top: mediumSize, left: mediumSize, right: mediumSize),
       child: BlocBuilder<DeviceTypeCubit, DeviceTypeState>(
         builder: (context, state) {
           return state.when(
@@ -73,9 +128,9 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
             ),
             loaded: (deviceTypes) => GridView.count(
                 crossAxisCount: 2,
-                crossAxisSpacing: mediumSize,
-                mainAxisSpacing: mediumSize,
-                children: List.generate(4, (index) {
+                crossAxisSpacing: smallSize,
+                mainAxisSpacing: smallSize,
+                children: List.generate(deviceTypes.length, (index) {
                   return GestureDetector(
                     onTap: () {
                       _onDeviceTypeSelected(deviceTypes[index].name);
@@ -83,7 +138,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                         context: context,
                         builder: (context) {
                           return Container(
-                            height: 800.0,
+                            height: MediaQuery.of(context).size.height/2,
                             padding: const EdgeInsets.all(smallSize),
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.onSurface,
@@ -94,6 +149,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Add Device',
@@ -133,7 +189,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                     ),
                                   ],
                                 ),
-                                verticalSpaceMedium,
+                                verticalSpaceSmall,
                                 Form(
                                     key: _formKey,
                                     child: Wrap(
@@ -143,32 +199,35 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                           label: "Name",
                                           controller: _nameController,
                                           keyboardType: TextInputType.text,
-                                          // outlined: false,
+                                          radius: 0,
+                                          outlined: false,
                                         ),
                                         Input(
                                           label: "Description",
                                           controller: _descriptionController,
                                           keyboardType: TextInputType.text,
-                                          // outlined: false,
+                                          radius: 0,
+                                          outlined: false,
+                                        ),
+                                        Text(
+                                          'Where is your device installed ?',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .tertiary,
+                                            fontFamily: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .fontFamily,
+                                            fontSize: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .fontSize,
+                                          ),
                                         ),
                                         DropdownButton<String>(
                                           value: selectedRoomId,
-                                          hint: Text(
-                                            'Select room',
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onTertiary,
-                                              fontFamily: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .fontFamily,
-                                              fontSize: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .fontSize,
-                                            ),
-                                          ),
+                                          isExpanded: true,
                                           items: rooms.map((RoomModel room) {
                                             return DropdownMenuItem<String>(
                                               value: room.rid,
@@ -181,24 +240,25 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                             });
                                           },
                                         ),
+                                        Text(
+                                          'Is your device on ?',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .tertiary,
+                                            fontFamily: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .fontFamily,
+                                            fontSize: Theme.of(context)
+                                                .textTheme
+                                                .bodySmall!
+                                                .fontSize,
+                                          ),
+                                        ),
                                         DropdownButton<bool>(
                                           value: _isDeviceActive,
-                                          hint: Text(
-                                            'Is you device active ?',
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onTertiary,
-                                              fontFamily: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .fontFamily,
-                                              fontSize: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .fontSize,
-                                            ),
-                                          ),
+                                          isExpanded: true,
                                           items: const [
                                             DropdownMenuItem(
                                                 value: true,
@@ -213,39 +273,40 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                             });
                                           },
                                         ),
-                                        DropdownButton<bool>(
-                                          value: _isSmartDevice,
-                                          hint: Text(
-                                            'Is you device active ?',
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onTertiary,
-                                              fontFamily: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .fontFamily,
-                                              fontSize: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .fontSize,
-                                            ),
+                                        Text(
+                                          'Is it smart device ?',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onTertiary,
+                                            fontFamily: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .fontFamily,
+                                            fontSize: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .fontSize,
                                           ),
-                                          items: const [
-                                            DropdownMenuItem(
-                                                value: true,
-                                                child: Text('Smart Device')),
-                                            DropdownMenuItem(
-                                                value: false,
-                                                child:
-                                                Text('Not Smart Device')),
-                                          ],
-                                          onChanged: (value) {
-                                            setState(() {
-                                              _isSmartDevice = value!;
-                                            });
-                                          },
                                         ),
+                                        // DropdownButton<bool>(
+                                        //   value: _isSmartDevice,
+                                        //   isExpanded: true,
+                                        //   items: const [
+                                        //     DropdownMenuItem(
+                                        //         value: true,
+                                        //         child: Text('Smart')),
+                                        //     DropdownMenuItem(
+                                        //         value: false,
+                                        //         child:
+                                        //         Text('Not Smart')),
+                                        //   ],
+                                        //   onChanged: (value) {
+                                        //     setState(() {
+                                        //       _isSmartDevice = value!;
+                                        //     });
+                                        //   },
+                                        // ),
                                       ],
                                     )),
                                 verticalSpaceSmall,
@@ -275,15 +336,13 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                         },
                       );
                     },
-                    child: Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                          color: DeviceUtils()
-                              .getCardBackgroundColor(
-                              context, deviceTypes[index].name),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(smallSize)),
+                    child: Card(
+                      color: DeviceUtils()
+                          .getCardBackgroundColor(
+                          context, deviceTypes[index].name),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

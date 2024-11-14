@@ -10,6 +10,7 @@ class Input extends StatelessWidget {
   final double? width;
   final int? maxLines;
   final int? maxLength;
+  final double radius;
   final bool isObscured;
   final String obscuringChar;
   final bool? primary;
@@ -32,6 +33,7 @@ class Input extends StatelessWidget {
     this.width,
     this.maxLines,
     this.maxLength,
+    this.radius = 8.0,
     this.isObscured = false,
     this.obscuringChar = '•',
     this.primary = true,
@@ -59,48 +61,48 @@ class Input extends StatelessWidget {
           decoration: InputDecoration(
               disabledBorder: outlined!
                   ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: _getTextFormFieldBorder(context))
                   : UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: _getTextFormFieldBorder(context)),
               enabledBorder: outlined!
                   ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: _getTextFormFieldBorder(context))
                   : UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: _getTextFormFieldBorder(context)),
               errorBorder: outlined!
                   ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.error,
                           width: 2.0))
                   : UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.error,
                           width: 2.0)),
               focusedErrorBorder: outlined!
                   ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.error,
                           width: 2.0))
                   : UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.error,
                           width: 2.0)),
               focusedBorder: outlined!
                   ? OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.primary,
                           width: 2.0))
                   : UnderlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(radius),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.primary,
                           width: 2.0)),
@@ -108,10 +110,10 @@ class Input extends StatelessWidget {
               fillColor: _getTextFormFieldColor(context),
               prefixIcon: prefixIcon,
               prefixIconColor: _getTextFormFieldIconStyle(context),
-              labelText: placeholder ?? label,
-              labelStyle: _getTextFormFieldTextStyle(context),
-              // errorStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //     color: Theme.of(context).colorScheme.error),
+              hintText: placeholder ?? label,
+              hintStyle: _getTextFormFieldTextStyle(context),
+              errorStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.error),
               suffixIcon: suffixIcon,
               suffixIconColor: _getTextFormFieldIconStyle(context)),
           maxLines: maxLines ?? 1,

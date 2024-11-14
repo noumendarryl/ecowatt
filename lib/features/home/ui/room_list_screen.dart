@@ -52,11 +52,11 @@ class _RoomListScreenState extends State<RoomListScreen> {
             .onSurface,
         leading: IconButton(
           icon: Icon(
-            CupertinoIcons.arrow_left,
+            Icons.arrow_back_ios,
             color: Theme
                 .of(context)
                 .colorScheme
-                .scrim,
+                .onTertiary,
             size: mediumSize,
           ),
           onPressed: () {
@@ -96,7 +96,7 @@ class _RoomListScreenState extends State<RoomListScreen> {
               color: Theme
                   .of(context)
                   .colorScheme
-                  .scrim,
+                  .onTertiary,
               size: mediumSize,
             ),
             onPressed: () {
@@ -119,6 +119,7 @@ class _RoomListScreenState extends State<RoomListScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Add Room',
@@ -165,7 +166,7 @@ class _RoomListScreenState extends State<RoomListScreen> {
                             ),
                           ],
                         ),
-                        verticalSpaceMedium,
+                        verticalSpaceSmall,
                         Form(
                             key: _formKey,
                             child: Wrap(
@@ -175,18 +176,21 @@ class _RoomListScreenState extends State<RoomListScreen> {
                                   label: "Name",
                                   controller: _nameController,
                                   keyboardType: TextInputType.text,
+                                  radius: 0,
                                   outlined: false,
                                 ),
                                 Input(
                                   label: "Description",
                                   controller: _descriptionController,
                                   keyboardType: TextInputType.text,
+                                  radius: 0,
                                   outlined: false,
                                 ),
                                 Input(
                                   label: "No Of Devices",
                                   controller: _deviceCountController,
                                   keyboardType: TextInputType.number,
+                                  radius: 0,
                                   outlined: false,
                                 ),
                               ],
@@ -344,7 +348,7 @@ class _RoomListScreenState extends State<RoomListScreen> {
                                 })),
                           ),
                       detailsLoaded: (RoomModel room) =>
-                          RoomDetailsScreen(roomModel: room),
+                          RoomDetailsScreen(room: room),
                       error: (error) =>
                           Center(
                               child: Text(

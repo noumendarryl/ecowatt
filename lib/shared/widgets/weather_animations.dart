@@ -8,9 +8,7 @@ class WeatherAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String animationPath; 
-    //if (weatherMainCondition == null) return 'assets/sunny.json';
-
+    String animationPath;
 
     // Determine which animation to show based on the temperature
     if (temperature > 30) {

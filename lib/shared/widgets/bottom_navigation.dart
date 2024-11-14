@@ -1,3 +1,4 @@
+import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -14,6 +15,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Theme.of(context).colorScheme.onSurface,
       currentIndex: currentIndex,
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
@@ -21,36 +23,63 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
           label: '',
           icon: Icon(
-            CupertinoIcons.home,
-            color: currentIndex == 0 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.tertiary,
+            currentIndex == 0
+                ? Icons.toggle_on_outlined
+                : Icons.toggle_off_outlined,
+            color: currentIndex == 0
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onTertiary,
+            size: mediumSize,
           ),
         ),
         BottomNavigationBarItem(
           label: '',
           icon: Icon(
             CupertinoIcons.search,
-            color: currentIndex == 1 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.tertiary,
+            color: currentIndex == 1
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onTertiary,
+            size: mediumSize,
+          ),
+        ),
+        BottomNavigationBarItem(
+          label: '',
+          icon: Container(
+            width: largeSize,
+            height: largeSize,
+            decoration: BoxDecoration(
+              color: currentIndex == 2
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.tertiary.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              CupertinoIcons.add,
+              color: currentIndex == 2
+                  ? Theme.of(context).colorScheme.onSurface
+                  : Theme.of(context).colorScheme.onTertiary,
+              size: mediumSize,
+            ),
           ),
         ),
         BottomNavigationBarItem(
           label: '',
           icon: Icon(
-            CupertinoIcons.add_circled,
-            color: currentIndex == 2 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.tertiary,
+            CupertinoIcons.square_favorites,
+            color: currentIndex == 3
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onTertiary,
+            size: mediumSize,
           ),
         ),
         BottomNavigationBarItem(
           label: '',
           icon: Icon(
-            CupertinoIcons.star,
-            color: currentIndex == 3 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.tertiary,
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: '',
-          icon: Icon(
-            CupertinoIcons.graph_square,
-            color: currentIndex == 4 ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.tertiary,
+            CupertinoIcons.chart_bar_square,
+            color: currentIndex == 4
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.onTertiary,
+            size: mediumSize,
           ),
         ),
       ],

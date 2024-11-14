@@ -13,9 +13,11 @@ class AppColorSchemes{
     onSecondary: Color(0xFFB1CA65),
     tertiary: kcMediumGrey,
     onTertiary: kcLightGrey,
-    error: Color(0xFFEB8888),
-    onError: Color(0xFFFFC5DE),
+    error: Color(0xFFFF4040),
+    onError: Color(0xFFB3261E),
     onSurface: kcWhite,
+    outline: Color(0xFF21005D),
+    outlineVariant: Color(0xFF625B71),
     scrim: kcDark, // Texts and Labels Color
   );
 
@@ -31,6 +33,8 @@ class AppColorSchemes{
     error: Color(0xFFEB8888),
     onError: Color(0xFFFFC5DE),
     onSurface: kcLightDark,
+    outline: Color(0xFF21005D),
+    outlineVariant: Color(0xFF625B71),
     scrim: kcWhite, // Texts and Labels Color
   );
 }

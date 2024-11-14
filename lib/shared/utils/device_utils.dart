@@ -7,19 +7,19 @@ class DeviceUtils {
       case "Smart TV":
         return Theme.of(context).colorScheme.primary;
       case "AC":
-        return Theme.of(context).colorScheme.secondary;
+        return Theme.of(context).colorScheme.onSecondary;
       case "Wi-Fi":
         return Theme.of(context).colorScheme.secondary;
       case "Lamp":
         return Theme.of(context).colorScheme.scrim;
       case "Fridge":
-        return Theme.of(context).colorScheme.onError;
+        return Theme.of(context).colorScheme.error;
       case "Fan":
         return Theme.of(context).colorScheme.surface;
       case "Washing Machine":
         return Theme.of(context).colorScheme.outlineVariant;
       default:
-        return Theme.of(context).colorScheme.tertiary;
+        return Theme.of(context).colorScheme.outline;
     }
   }
 
@@ -28,13 +28,13 @@ class DeviceUtils {
       case "Smart TV":
         return CupertinoIcons.tv;
       case "AC":
-        return CupertinoIcons.wind_snow;
+        return CupertinoIcons.snow;
       case "Wi-Fi":
         return CupertinoIcons.wifi;
       case "Lamp":
         return CupertinoIcons.lightbulb;
       case "Fridge":
-        return CupertinoIcons.snow;
+        return Icons.kitchen;
       case "Fan":
         return CupertinoIcons.wind;
       case "Washing Machine":

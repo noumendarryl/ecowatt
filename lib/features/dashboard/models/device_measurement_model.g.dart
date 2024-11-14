@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'electricity_data_model.dart';
+part of 'device_measurement_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ElectricityDataModelImpl _$$ElectricityDataModelImplFromJson(
+_$DeviceMeasurementModelImpl _$$DeviceMeasurementModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$ElectricityDataModelImpl(
+    _$DeviceMeasurementModelImpl(
       voltage: (json['voltage'] as num).toDouble(),
       power: (json['power'] as num).toDouble(),
-      equipmentId: json['equipmentId'] as String,
+      mid: json['mid'] as String,
       timestamp: DateTime.parse(json['timestamp'] as String),
     );
 
-Map<String, dynamic> _$$ElectricityDataModelImplToJson(
-        _$ElectricityDataModelImpl instance) =>
+Map<String, dynamic> _$$DeviceMeasurementModelImplToJson(
+        _$DeviceMeasurementModelImpl instance) =>
     <String, dynamic>{
       'voltage': instance.voltage,
       'power': instance.power,
-      'equipmentId': instance.equipmentId,
+      'mid': instance.mid,
       'timestamp': instance.timestamp.toIso8601String(),
     };

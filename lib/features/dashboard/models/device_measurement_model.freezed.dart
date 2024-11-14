@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'electricity_data_model.dart';
+part of 'device_measurement_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,56 +14,57 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ElectricityDataModel _$ElectricityDataModelFromJson(Map<String, dynamic> json) {
-  return _ElectricityDataModel.fromJson(json);
+DeviceMeasurementModel _$DeviceMeasurementModelFromJson(
+    Map<String, dynamic> json) {
+  return _DeviceMeasurementModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ElectricityDataModel {
+mixin _$DeviceMeasurementModel {
   double get voltage => throw _privateConstructorUsedError;
   double get power => throw _privateConstructorUsedError;
-  String get equipmentId => throw _privateConstructorUsedError;
+  String get mid => throw _privateConstructorUsedError;
   DateTime get timestamp => throw _privateConstructorUsedError;
 
-  /// Serializes this ElectricityDataModel to a JSON map.
+  /// Serializes this DeviceMeasurementModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ElectricityDataModel
+  /// Create a copy of DeviceMeasurementModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ElectricityDataModelCopyWith<ElectricityDataModel> get copyWith =>
+  $DeviceMeasurementModelCopyWith<DeviceMeasurementModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ElectricityDataModelCopyWith<$Res> {
-  factory $ElectricityDataModelCopyWith(ElectricityDataModel value,
-          $Res Function(ElectricityDataModel) then) =
-      _$ElectricityDataModelCopyWithImpl<$Res, ElectricityDataModel>;
+abstract class $DeviceMeasurementModelCopyWith<$Res> {
+  factory $DeviceMeasurementModelCopyWith(DeviceMeasurementModel value,
+          $Res Function(DeviceMeasurementModel) then) =
+      _$DeviceMeasurementModelCopyWithImpl<$Res, DeviceMeasurementModel>;
   @useResult
   $Res call(
-      {double voltage, double power, String equipmentId, DateTime timestamp});
+      {double voltage, double power, String mid, DateTime timestamp});
 }
 
 /// @nodoc
-class _$ElectricityDataModelCopyWithImpl<$Res,
-        $Val extends ElectricityDataModel>
-    implements $ElectricityDataModelCopyWith<$Res> {
-  _$ElectricityDataModelCopyWithImpl(this._value, this._then);
+class _$DeviceMeasurementModelCopyWithImpl<$Res,
+        $Val extends DeviceMeasurementModel>
+    implements $DeviceMeasurementModelCopyWith<$Res> {
+  _$DeviceMeasurementModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ElectricityDataModel
+  /// Create a copy of DeviceMeasurementModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? voltage = null,
     Object? power = null,
-    Object? equipmentId = null,
+    Object? mid = null,
     Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
@@ -75,9 +76,9 @@ class _$ElectricityDataModelCopyWithImpl<$Res,
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
               as double,
-      equipmentId: null == equipmentId
-          ? _value.equipmentId
-          : equipmentId // ignore: cast_nullable_to_non_nullable
+      mid: null == mid
+          ? _value.mid
+          : mid // ignore: cast_nullable_to_non_nullable
               as String,
       timestamp: null == timestamp
           ? _value.timestamp
@@ -88,36 +89,39 @@ class _$ElectricityDataModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ElectricityDataModelImplCopyWith<$Res>
-    implements $ElectricityDataModelCopyWith<$Res> {
-  factory _$$ElectricityDataModelImplCopyWith(_$ElectricityDataModelImpl value,
-          $Res Function(_$ElectricityDataModelImpl) then) =
-      __$$ElectricityDataModelImplCopyWithImpl<$Res>;
+abstract class _$$DeviceMeasurementModelImplCopyWith<$Res>
+    implements $DeviceMeasurementModelCopyWith<$Res> {
+  factory _$$DeviceMeasurementModelImplCopyWith(
+          _$DeviceMeasurementModelImpl value,
+          $Res Function(_$DeviceMeasurementModelImpl) then) =
+      __$$DeviceMeasurementModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {double voltage, double power, String equipmentId, DateTime timestamp});
+      {double voltage, double power, String mid, DateTime timestamp});
 }
 
 /// @nodoc
-class __$$ElectricityDataModelImplCopyWithImpl<$Res>
-    extends _$ElectricityDataModelCopyWithImpl<$Res, _$ElectricityDataModelImpl>
-    implements _$$ElectricityDataModelImplCopyWith<$Res> {
-  __$$ElectricityDataModelImplCopyWithImpl(_$ElectricityDataModelImpl _value,
-      $Res Function(_$ElectricityDataModelImpl) _then)
+class __$$DeviceMeasurementModelImplCopyWithImpl<$Res>
+    extends _$DeviceMeasurementModelCopyWithImpl<$Res,
+        _$DeviceMeasurementModelImpl>
+    implements _$$DeviceMeasurementModelImplCopyWith<$Res> {
+  __$$DeviceMeasurementModelImplCopyWithImpl(
+      _$DeviceMeasurementModelImpl _value,
+      $Res Function(_$DeviceMeasurementModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ElectricityDataModel
+  /// Create a copy of DeviceMeasurementModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? voltage = null,
     Object? power = null,
-    Object? equipmentId = null,
+    Object? mid = null,
     Object? timestamp = null,
   }) {
-    return _then(_$ElectricityDataModelImpl(
+    return _then(_$DeviceMeasurementModelImpl(
       voltage: null == voltage
           ? _value.voltage
           : voltage // ignore: cast_nullable_to_non_nullable
@@ -126,9 +130,9 @@ class __$$ElectricityDataModelImplCopyWithImpl<$Res>
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
               as double,
-      equipmentId: null == equipmentId
-          ? _value.equipmentId
-          : equipmentId // ignore: cast_nullable_to_non_nullable
+      mid: null == mid
+          ? _value.mid
+          : mid // ignore: cast_nullable_to_non_nullable
               as String,
       timestamp: null == timestamp
           ? _value.timestamp
@@ -140,39 +144,39 @@ class __$$ElectricityDataModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ElectricityDataModelImpl implements _ElectricityDataModel {
-  const _$ElectricityDataModelImpl(
+class _$DeviceMeasurementModelImpl implements _DeviceMeasurementModel {
+  const _$DeviceMeasurementModelImpl(
       {required this.voltage,
       required this.power,
-      required this.equipmentId,
+      required this.mid,
       required this.timestamp});
 
-  factory _$ElectricityDataModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ElectricityDataModelImplFromJson(json);
+  factory _$DeviceMeasurementModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DeviceMeasurementModelImplFromJson(json);
 
   @override
   final double voltage;
   @override
   final double power;
   @override
-  final String equipmentId;
+  final String mid;
   @override
   final DateTime timestamp;
 
   @override
   String toString() {
-    return 'ElectricityDataModel(voltage: $voltage, power: $power, equipmentId: $equipmentId, timestamp: $timestamp)';
+    return 'DeviceMeasurementModel(voltage: $voltage, power: $power, mid: $mid, timestamp: $timestamp)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ElectricityDataModelImpl &&
+            other is _$DeviceMeasurementModelImpl &&
             (identical(other.voltage, voltage) || other.voltage == voltage) &&
             (identical(other.power, power) || other.power == power) &&
-            (identical(other.equipmentId, equipmentId) ||
-                other.equipmentId == equipmentId) &&
+            (identical(other.mid, mid) ||
+                other.mid == mid) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp));
   }
@@ -180,49 +184,48 @@ class _$ElectricityDataModelImpl implements _ElectricityDataModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, voltage, power, equipmentId, timestamp);
+      Object.hash(runtimeType, voltage, power, mid, timestamp);
 
-  /// Create a copy of ElectricityDataModel
+  /// Create a copy of DeviceMeasurementModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ElectricityDataModelImplCopyWith<_$ElectricityDataModelImpl>
-      get copyWith =>
-          __$$ElectricityDataModelImplCopyWithImpl<_$ElectricityDataModelImpl>(
-              this, _$identity);
+  _$$DeviceMeasurementModelImplCopyWith<_$DeviceMeasurementModelImpl>
+      get copyWith => __$$DeviceMeasurementModelImplCopyWithImpl<
+          _$DeviceMeasurementModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ElectricityDataModelImplToJson(
+    return _$$DeviceMeasurementModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _ElectricityDataModel implements ElectricityDataModel {
-  const factory _ElectricityDataModel(
+abstract class _DeviceMeasurementModel implements DeviceMeasurementModel {
+  const factory _DeviceMeasurementModel(
       {required final double voltage,
       required final double power,
-      required final String equipmentId,
-      required final DateTime timestamp}) = _$ElectricityDataModelImpl;
+      required final String mid,
+      required final DateTime timestamp}) = _$DeviceMeasurementModelImpl;
 
-  factory _ElectricityDataModel.fromJson(Map<String, dynamic> json) =
-      _$ElectricityDataModelImpl.fromJson;
+  factory _DeviceMeasurementModel.fromJson(Map<String, dynamic> json) =
+      _$DeviceMeasurementModelImpl.fromJson;
 
   @override
   double get voltage;
   @override
   double get power;
   @override
-  String get equipmentId;
+  String get mid;
   @override
   DateTime get timestamp;
 
-  /// Create a copy of ElectricityDataModel
+  /// Create a copy of DeviceMeasurementModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ElectricityDataModelImplCopyWith<_$ElectricityDataModelImpl>
+  _$$DeviceMeasurementModelImplCopyWith<_$DeviceMeasurementModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

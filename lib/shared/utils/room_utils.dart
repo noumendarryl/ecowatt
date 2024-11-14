@@ -5,21 +5,21 @@ class RoomUtils {
   Color getCardBackgroundColor(BuildContext context, String room) {
     switch (room) {
       case "Bed Room":
-        return Theme.of(context).colorScheme.primary;
+        return Theme.of(context).colorScheme.onSecondary;
       case "Kitchen":
-        return Theme.of(context).colorScheme.secondary;
-      case "Living Room":
-        return Theme.of(context).colorScheme.secondary;
-      case "Dining Room":
         return Theme.of(context).colorScheme.scrim;
+      case "Living Room":
+        return Theme.of(context).colorScheme.outline;
+      case "Dining Room":
+        return Theme.of(context).colorScheme.primary;
       case "Office Room":
-        return Theme.of(context).colorScheme.onError;
+        return Theme.of(context).colorScheme.error;
       case "Bath Room":
-        return Theme.of(context).colorScheme.surface;
-      case "Laundry Room":
         return Theme.of(context).colorScheme.outlineVariant;
+      case "Laundry Room":
+        return Theme.of(context).colorScheme.secondary;
       default:
-        return Theme.of(context).colorScheme.tertiary;
+        return Theme.of(context).colorScheme.surface;
     }
   }
 
@@ -28,17 +28,17 @@ class RoomUtils {
       case "Bed Room":
         return CupertinoIcons.bed_double_fill;
       case "Kitchen":
-        return CupertinoIcons.burn;
+        return Icons.kitchen;
       case "Living Room":
         return CupertinoIcons.tv;
       case "Dining Room":
-        return CupertinoIcons.square_grid_2x2_fill;
+        return Icons.restaurant_menu;
       case "Office Room":
         return CupertinoIcons.desktopcomputer;
       case "Bath Room":
         return CupertinoIcons.drop_fill;
       case "Laundry Room":
-        return CupertinoIcons.square_stack_3d_up_fill;
+        return Icons.local_laundry_service;
       default:
         return CupertinoIcons.car_detailed;
     }

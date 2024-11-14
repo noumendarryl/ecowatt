@@ -84,8 +84,38 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       child: BlocBuilder<EditProfileCubit, EditProfileState>(
         builder: (context, state) {
           return Scaffold(
+            backgroundColor:
+            Theme
+                .of(context)
+                .colorScheme
+                .onSurface,
             appBar: AppBar(
-              title: const Center(child: Text('Edit Profile')),
+              title: Text(
+                "Rooms",
+                style: TextStyle(
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .scrim,
+                  fontFamily: Theme
+                      .of(context)
+                      .textTheme
+                      .titleSmall!
+                      .fontFamily,
+                  fontSize: Theme
+                      .of(context)
+                      .textTheme
+                      .titleSmall!
+                      .fontSize,
+                  fontWeight: Theme
+                      .of(context)
+                      .textTheme
+                      .titleSmall!
+                      .fontWeight,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              centerTitle: true,
             ),
             body: Container(
               padding: const EdgeInsets.symmetric(

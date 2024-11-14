@@ -63,7 +63,7 @@ class Register extends StatelessWidget {
                         child: Center(
                           child: Image.asset(
                             "images/logo/ecowatt.png",
-                            height: size.height * 0.1,
+                            height: size.height * 0.2,
                           ),
                         )),
                     Text(
@@ -132,7 +132,7 @@ class Register extends StatelessWidget {
                     Footer(
                       size: size,
                     ),
-                    verticalSpaceMedium,
+                    verticalSpaceLarge,
                     TextRich(
                       primaryText: "Learn more about",
                       secondaryText: " Ecowatt",

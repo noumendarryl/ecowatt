@@ -35,12 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
-        title: 'HOME',
-
+        title: 'Home',
         currentIndex:0,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: smallSize),
+            padding: const EdgeInsets.symmetric(horizontal: smallSize, vertical: mediumSize),
             child: Column(
               children: [
                 Container(
@@ -98,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       children: List.generate(4, (index) {
                                         return GestureDetector(
                                           onTap: () {
-                                            context.pushRoute(RoomDetailsRoute(roomModel: rooms[index]));
+                                            context.pushRoute(RoomDetailsRoute(room: rooms[index]));
                                           },
                                           child: Card(
                                               color: RoomUtils()
@@ -162,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       })),
                                 ),
                                 detailsLoaded: (RoomModel room) =>
-                                    RoomDetailsScreen(roomModel: room),
+                                    RoomDetailsScreen(room: room),
                                 error: (error) => Center(
                                         child: Text(
                                       error,
@@ -213,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                 loaded: (devices) => SizedBox(
-                                  height: 400.0,
+                                  height: 350.0,
                                   child: GridView.count(
                                       crossAxisCount: 2,
                                       crossAxisSpacing: smallSize,

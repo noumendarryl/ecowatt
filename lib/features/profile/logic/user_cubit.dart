@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ecowatt/features/profile/logic/user_state.dart';
 
-import '../repository/user_repository.dart';
+import '../repositories/user_repository.dart';
 
 // Cette partie est générée par Freezed
 

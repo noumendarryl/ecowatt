@@ -21,11 +21,11 @@ class _DeviceCardState extends State<DeviceCard> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(smallSize + 6.0),
       ),
       color: DeviceUtils().getCardBackgroundColor(context, widget.device.type),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(smallSize + 6.0),
         child: Column(
           children: [
             // Device Icon
@@ -47,11 +47,11 @@ class _DeviceCardState extends State<DeviceCard> {
                     });
                     await FirebaseFirestore.instance
                         .collection(
-                        'devices') // Ensure this is your Firestore collection name
+                            'devices') // Ensure this is your Firestore collection name
                         .doc(widget.device.did)
                         .update({'isActive': newValue});
                   },
-                  activeColor: Colors.green,
+                  activeColor:  Theme.of(context).colorScheme.onSecondary,
                   inactiveThumbColor: Theme.of(context).colorScheme.onTertiary,
                 ),
                 // Text(
@@ -65,29 +65,33 @@ class _DeviceCardState extends State<DeviceCard> {
             ),
             verticalSpaceMedium,
             // Device Information
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment:  CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.device.name,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
-                    fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.device.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
                   ),
-                  // softWrap: true,
-                ),
-                verticalSpaceSmall,
-                Text(
-                  widget.device.isActive ? "ON" : "OFF",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
-                    fontSize: Theme.of(context).textTheme.labelSmall!.fontSize,
+                  verticalSpaceSmall,
+                  Text(
+                    widget.device.isActive ? "On" : "Off",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onTertiary,
+                      fontSize:
+                          Theme.of(context).textTheme.labelSmall!.fontSize,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            )
           ],
         ),
       ),

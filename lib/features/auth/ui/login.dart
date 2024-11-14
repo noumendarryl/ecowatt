@@ -58,7 +58,7 @@ class Login extends StatelessWidget {
                       child: Center(
                         child: Image.asset(
                           "images/logo/ecowatt.png",
-                          height: size.height * 0.1,
+                          height: size.height * 0.2,
                         ),
                       )
                     ),
@@ -87,9 +87,10 @@ class Login extends StatelessWidget {
                             Theme.of(context).textTheme.bodyMedium!.fontSize,
                       ),
                     ),
-                    verticalSpaceLarge,
+                    verticalSpaceMedium,
                     FormLayout(
                       formKey: _formKey,
+                      // isLoading:
                       label: "Sign in",
                       emailController: _emailController,
                       passwordController: _passwordController,

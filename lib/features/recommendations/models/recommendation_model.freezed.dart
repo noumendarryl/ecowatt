@@ -20,7 +20,7 @@ RecommendationModel _$RecommendationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RecommendationModel {
-  String get titre => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
   /// Serializes this RecommendationModel to a JSON map.
@@ -39,7 +39,7 @@ abstract class $RecommendationModelCopyWith<$Res> {
           RecommendationModel value, $Res Function(RecommendationModel) then) =
       _$RecommendationModelCopyWithImpl<$Res, RecommendationModel>;
   @useResult
-  $Res call({String titre, String description});
+  $Res call({String title, String description});
 }
 
 /// @nodoc
@@ -57,13 +57,13 @@ class _$RecommendationModelCopyWithImpl<$Res, $Val extends RecommendationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titre = null,
+    Object? title = null,
     Object? description = null,
   }) {
     return _then(_value.copyWith(
-      titre: null == titre
-          ? _value.titre
-          : titre // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -81,7 +81,7 @@ abstract class _$$RecommendationModelImplCopyWith<$Res>
       __$$RecommendationModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String titre, String description});
+  $Res call({String title, String description});
 }
 
 /// @nodoc
@@ -97,13 +97,13 @@ class __$$RecommendationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titre = null,
+    Object? title = null,
     Object? description = null,
   }) {
     return _then(_$RecommendationModelImpl(
-      titre: null == titre
-          ? _value.titre
-          : titre // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -117,19 +117,19 @@ class __$$RecommendationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RecommendationModelImpl implements _RecommendationModel {
   const _$RecommendationModelImpl(
-      {required this.titre, required this.description});
+      {required this.title, required this.description});
 
   factory _$RecommendationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RecommendationModelImplFromJson(json);
 
   @override
-  final String titre;
+  final String title;
   @override
   final String description;
 
   @override
   String toString() {
-    return 'RecommendationModel(titre: $titre, description: $description)';
+    return 'RecommendationModel(title: $title, description: $description)';
   }
 
   @override
@@ -137,14 +137,14 @@ class _$RecommendationModelImpl implements _RecommendationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecommendationModelImpl &&
-            (identical(other.titre, titre) || other.titre == titre) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, titre, description);
+  int get hashCode => Object.hash(runtimeType, title, description);
 
   /// Create a copy of RecommendationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -165,14 +165,14 @@ class _$RecommendationModelImpl implements _RecommendationModel {
 
 abstract class _RecommendationModel implements RecommendationModel {
   const factory _RecommendationModel(
-      {required final String titre,
+      {required final String title,
       required final String description}) = _$RecommendationModelImpl;
 
   factory _RecommendationModel.fromJson(Map<String, dynamic> json) =
       _$RecommendationModelImpl.fromJson;
 
   @override
-  String get titre;
+  String get title;
   @override
   String get description;
 

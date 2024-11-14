@@ -14,7 +14,6 @@ import 'package:ecowatt/features/auth/ui/register.dart' as _i8;
 import 'package:ecowatt/features/dashboard/ui/dashboard.dart' as _i2;
 import 'package:ecowatt/features/device/models/device_model.dart' as _i18;
 import 'package:ecowatt/features/device/ui/add_device_screen.dart' as _i1;
-import 'package:ecowatt/features/device/ui/device_details_screen.dart' as _i3;
 import 'package:ecowatt/features/device/ui/search_device_screen.dart' as _i11;
 import 'package:ecowatt/features/home/models/room_model.dart' as _i20;
 import 'package:ecowatt/features/home/ui/home_screen.dart' as _i5;
@@ -44,17 +43,7 @@ abstract class $AppRouter extends _i16.RootStackRouter {
     DashboardRoute.name: (routeData) {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i2.DashboardPage(),
-      );
-    },
-    DeviceDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<DeviceDetailsRouteArgs>();
-      return _i16.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i3.DeviceDetailsScreen(
-          key: args.key,
-          deviceModel: args.deviceModel,
-        ),
+        child: const _i2.DashboardPage(),
       );
     },
     EditProfileRoute.name: (routeData) {
@@ -96,7 +85,7 @@ abstract class $AppRouter extends _i16.RootStackRouter {
         routeData: routeData,
         child: _i9.RoomDetailsScreen(
           key: args.key,
-          roomModel: args.roomModel,
+          room: args.room,
         ),
       );
     },
@@ -308,14 +297,14 @@ class RegisterArgs {
 /// [_i9.RoomDetailsScreen]
 class RoomDetailsRoute extends _i16.PageRouteInfo<RoomDetailsRouteArgs> {
   RoomDetailsRoute({
-    _i19.Key? key,
-    required _i20.RoomModel roomModel,
+    _i17.Key? key,
+    required _i20.RoomModel room,
     List<_i16.PageRouteInfo>? children,
   }) : super(
           RoomDetailsRoute.name,
           args: RoomDetailsRouteArgs(
             key: key,
-            roomModel: roomModel,
+            room: room,
           ),
           initialChildren: children,
         );
@@ -329,16 +318,16 @@ class RoomDetailsRoute extends _i16.PageRouteInfo<RoomDetailsRouteArgs> {
 class RoomDetailsRouteArgs {
   const RoomDetailsRouteArgs({
     this.key,
-    required this.roomModel,
+    required this.room,
   });
 
-  final _i19.Key? key;
+  final _i17.Key? key;
 
-  final _i20.RoomModel roomModel;
+  final _i20.RoomModel room;
 
   @override
   String toString() {
-    return 'RoomDetailsRouteArgs{key: $key, roomModel: $roomModel}';
+    return 'RoomDetailsRouteArgs{key: $key, room: $room}';
   }
 }
 

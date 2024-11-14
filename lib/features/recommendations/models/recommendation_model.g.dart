@@ -9,13 +9,13 @@ part of 'recommendation_model.dart';
 _$RecommendationModelImpl _$$RecommendationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$RecommendationModelImpl(
-      titre: json['titre'] as String,
+      title: json['title'] as String,
       description: json['description'] as String,
     );
 
 Map<String, dynamic> _$$RecommendationModelImplToJson(
         _$RecommendationModelImpl instance) =>
     <String, dynamic>{
-      'titre': instance.titre,
+      'title': instance.title,
       'description': instance.description,
     };

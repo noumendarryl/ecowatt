@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:ecowatt/shared/widgets/base_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,8 +9,19 @@ import '../logic/recommendation_state.dart';
 import '../repositories/recommendation_repository.dart';
 
 @RoutePage()
-class RecommendationsScreen extends StatelessWidget {
+class RecommendationsScreen extends StatefulWidget {
   const RecommendationsScreen({super.key});
+
+  @override
+  State<RecommendationsScreen> createState() => _RecommendationsScreenState();
+}
+
+class _RecommendationsScreenState extends State<RecommendationsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<RecommendationCubit>().loadRecommendations();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +47,28 @@ class RecommendationsScreen extends StatelessWidget {
                     return Card(
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.circular(16), // Arrondi des coins
+                            BorderRadius.circular(smallSize + 6.0), // Arrondi des coins
                       ),
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      elevation: 4,
+                          horizontal: smallSize, vertical: smallSize),
+                      elevation: tinySize,
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(smallSize + 6.0),
                         child: ListTile(
                           tileColor: Theme.of(context).colorScheme.primary,
-                          textColor: Colors.white,
+                          textColor: Theme.of(context).colorScheme.onSurface,
                           title: Text(
-                            recommendation.titre,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
+                            recommendation.title,
+                            style: TextStyle(
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .fontSize,
+                              fontWeight: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .fontWeight,
+                            ),
                           ),
                           subtitle: Text(recommendation.description),
                         ),

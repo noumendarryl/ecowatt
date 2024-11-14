@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import '../../auth/repositories/auth_repository.dart';
 import '../models/user_model.dart';
 
-import '../repository/user_repository.dart';
+import '../repositories/user_repository.dart';
 import 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {

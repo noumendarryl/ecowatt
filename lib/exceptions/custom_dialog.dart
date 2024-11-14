@@ -40,7 +40,7 @@ Widget _getSnackbarIcon(SnackbarType type) {
     case SnackbarType.success:
       return const Icon(CupertinoIcons.checkmark_seal_fill, color: Colors.white, size: 25.0,);
     case SnackbarType.error:
-      return const Icon(CupertinoIcons.exclamationmark_triangle_fill, color: Colors.white, size: 25.0,);
+      return const Icon(CupertinoIcons.exclamationmark_octagon_fill, color: Colors.white, size: 25.0,);
     case SnackbarType.info:
       return const Icon(CupertinoIcons.info_circle_fill, color: Colors.white, size: 25.0,);
   }

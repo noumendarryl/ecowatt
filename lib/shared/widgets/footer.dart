@@ -1,7 +1,6 @@
 import 'package:ecowatt/shared/constants/ui_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../features/auth/logic/auth_cubit.dart';
 import '../../features/auth/logic/auth_state.dart';
@@ -25,7 +24,7 @@ class Footer extends StatelessWidget {
             children: [
               SizedBox(
                 width: size.width / 3,
-                height: 1.0,
+                height: 2.0,
                 child: Container(
                   color: Theme.of(context).colorScheme.onTertiary,
                 ),
@@ -41,7 +40,7 @@ class Footer extends StatelessWidget {
               horizontalSpaceSmall,
               SizedBox(
                 width: size.width / 3,
-                height: 1.0,
+                height: 2.0,
                 child: Container(
                   color: Theme.of(context).colorScheme.onTertiary,
                 ),
@@ -57,20 +56,20 @@ class Footer extends StatelessWidget {
               Button(
                 label: 'Continue with Google',
                 primary: false,
-                prefix: SvgPicture.asset(
-                  "images/brands/google.svg",
-                  height: size.height * 0.02,
+                prefix: Image.asset(
+                  "images/brands/google.png",
+                  height: size.height * 0.05,
                 ),
                 onPressed: () {
                   context.read<AuthCubit>().signInWithGoogle();
                 },
               ),
               Button(
-                label: 'Connect with Apple',
+                label: 'Continue with Apple',
                 primary: false,
-                prefix: SvgPicture.asset(
-                 "images/brands/apple.svg",
-                  height: size.height * 0.02,
+                prefix: Image.asset(
+                 "images/brands/apple.png",
+                  height: size.height * 0.04,
                 ),
                 onPressed: () {},
               ),
