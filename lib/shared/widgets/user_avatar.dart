@@ -17,7 +17,8 @@ class UserAvatar extends StatelessWidget {
       this.height = 120.0,
       this.iconSize = smallSize,
       this.avatar,
-      this.onAction, this.photoURL});
+      this.onAction,
+      this.photoURL});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class UserAvatar extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Theme.of(context).colorScheme.tertiary,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
       child: GestureDetector(
         onTap: onAction,
@@ -35,10 +36,13 @@ class UserAvatar extends StatelessWidget {
           backgroundImage: avatar != null
               ? FileImage(avatar!) // Afficher l'image si disponible
               : (photoURL != null && photoURL!.isNotEmpty
-              ? NetworkImage(photoURL!) // Afficher l'image réseau si disponible
-              : null), // Pas d'image par défaut
+                  ? NetworkImage(
+                      photoURL!) // Afficher l'image réseau si disponible
+                  : null), // Pas d'image par défaut
           child: (avatar == null && (photoURL == null || photoURL!.isEmpty))
-              ? const Icon(Icons.person, size: 50) // Icône par défaut si aucune image
+              ? Icon(Icons.person,
+                  color: Theme.of(context).colorScheme.onSurface,
+                  size: 50) // Icône par défaut si aucune image
               : null,
         ),
       ),

@@ -6,6 +6,7 @@ class Button extends StatelessWidget {
   final double? width;
   final double? height;
   final double? radius;
+  final double? padding;
   final bool? isLoading;
   final bool? primary;
   final bool? tertiary;
@@ -21,6 +22,7 @@ class Button extends StatelessWidget {
         this.width,
         this.height,
         this.radius,
+        this.padding = smallSize +  5.0,
         this.isLoading = false,
         this.primary = true,
         this.tertiary = false,
@@ -40,7 +42,7 @@ class Button extends StatelessWidget {
         style: TextButton.styleFrom(
           foregroundColor: Theme.of(context).colorScheme.scrim,
           backgroundColor: _getButtonColor(context),
-          padding: const EdgeInsets.all(smallSize + 5.0),
+          padding: EdgeInsets.all(padding!),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius ?? smallSize),
               side: _getButtonBorder(context)),
@@ -110,26 +112,26 @@ class Button extends StatelessWidget {
   TextStyle? _getButtonTextStyle(BuildContext context) {
     if (disabled!) {
       if (outlined!) {
-        return Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onTertiary);
+        return Theme.of(context).textTheme.titleMedium?.copyWith(
+            color: Theme.of(context).colorScheme.tertiary);
       }
-      return Theme.of(context).textTheme.bodyMedium?.copyWith(
+      return Theme.of(context).textTheme.titleMedium?.copyWith(
           color: Theme.of(context).colorScheme.tertiary);
     } else if (outlined!) {
       return Theme.of(context)
           .textTheme
-          .bodyMedium
-          ?.copyWith(color: Theme.of(context).colorScheme.scrim);
+          .titleMedium
+          ?.copyWith(color: Theme.of(context).colorScheme.primary);
     } else if (primary!) {
       return Theme.of(context)
           .textTheme
-          .bodyMedium
+          .titleMedium
           ?.copyWith(color: Theme.of(context).colorScheme.onSurface);
     } else {
       return Theme.of(context)
           .textTheme
-          .bodyMedium
-          ?.copyWith(color: Theme.of(context).colorScheme.scrim);
+          .titleSmall
+          ?.copyWith(color: Theme.of(context).colorScheme.tertiary);
     }
   }
 }

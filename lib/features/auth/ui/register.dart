@@ -32,6 +32,7 @@ class Register extends StatelessWidget {
         state.maybeWhen(
             signUpSuccess: () {
               showCustomSnackbar(
+                context,
                 title: "User registration successful",
                 message: "Your account has been created successfully",
                 type: SnackbarType.success,
@@ -40,6 +41,7 @@ class Register extends StatelessWidget {
             },
             signUpFailed: (user) {
               showCustomSnackbar(
+                context,
                 title: "User Signup Failed",
                 message: "Your account hasn't been created. Please try again.",
                 type: SnackbarType.error,
@@ -59,11 +61,11 @@ class Register extends StatelessWidget {
                   children: [
                     Padding(
                         padding:
-                            const EdgeInsets.symmetric(vertical: mediumSize),
+                            const EdgeInsets.only(top: mediumSize, bottom: smallSize),
                         child: Center(
                           child: Image.asset(
-                            "images/logo/ecowatt.png",
-                            height: size.height * 0.2,
+                            "assets/images/logo/ecowatt.png",
+                            height: size.height * 0.12,
                           ),
                         )),
                     Text(
@@ -80,15 +82,14 @@ class Register extends StatelessWidget {
                               .headlineLarge!
                               .fontWeight),
                     ),
-                    verticalSpaceSmall,
                     Text(
                       "Monitor your energy consumption with Ecowatt",
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onTertiary,
+                        color: Theme.of(context).colorScheme.tertiary,
                         fontFamily:
                             Theme.of(context).textTheme.bodySmall!.fontFamily,
                         fontSize:
-                            Theme.of(context).textTheme.bodyLarge!.fontSize,
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
                       ),
                     ),
                     verticalSpaceMedium,
@@ -113,7 +114,7 @@ class Register extends StatelessWidget {
                               _passwordController.text.trim()
                           );
                           _formKey.currentState!.reset();
-                          // context.pushRoute(Login());
+                          context.pushRoute(Login());
                         }
                       },
                     ),
@@ -128,16 +129,17 @@ class Register extends StatelessWidget {
                         },
                       ),
                     ),
-                    verticalSpaceSmall,
                     Footer(
                       size: size,
                     ),
-                    verticalSpaceLarge,
-                    TextRich(
-                      primaryText: "Learn more about",
-                      secondaryText: " Ecowatt",
-                      alignment: Alignment.center,
-                      onClick: () {},
+                    Padding(
+                      padding: const EdgeInsets.only(top: mediumSize + 5.0),
+                      child: TextRich(
+                        primaryText: "Want to know more about ",
+                        secondaryText: "Ecowatt ?",
+                        alignment: Alignment.center,
+                        onClick: () {},
+                      ),
                     ),
                   ],
                 ),

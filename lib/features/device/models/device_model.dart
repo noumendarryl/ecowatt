@@ -4,9 +4,8 @@ class DeviceModel {
   String type; // Type of device
   String rid; // Foreign key to the room
   String uid; // Foreign key to the user
-  String? sensorId; // Foreign key to the user
+  String? sid; // Foreign key to the sensor linked to the device
   String? description;
-  Map<String, dynamic>? measurements;
   bool isActive = false; // Device ON/OFF value
   bool isSmartDevice = false; // Flag for smart devices
 
@@ -16,9 +15,8 @@ class DeviceModel {
     required this.type,
     required this.rid,
     required this.uid,
-    this.sensorId,
+    this.sid,
     this.description,
-    this.measurements,
     required this.isActive,
     required this.isSmartDevice,
   });
@@ -31,9 +29,8 @@ class DeviceModel {
       type: data['type'],
       rid: data['rid'],
       uid: data['uid'],
-      sensorId: data['sensorId'],
+      sid: data['sid'],
       description: data['description'],
-      measurements: data['measurements'],
       isActive: data['isActive'],
       isSmartDevice: data['isSmartDevice'],
     );
@@ -47,11 +44,34 @@ class DeviceModel {
       'type': type,
       'rid': rid,
       'uid': uid,
-      'sensorId': sensorId,
+      'sid': sid,
       'description': description,
-      'measurements': measurements,
       'isActive': isActive,
       'isSmartDevice': isSmartDevice,
     };
+  }
+
+  DeviceModel copyWith({
+    String? did,
+    String? name,
+    String? type,
+    String? rid,
+    String? uid,
+    String? sid,
+    String? description,
+    bool? isActive,
+    bool? isSmartDevice,
+  }) {
+    return DeviceModel(
+      did: did ?? this.did,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      rid: rid ?? this.rid,
+      uid: uid ?? this.uid,
+      sid: sid ?? this.sid,
+      description: description ?? this.description,
+      isActive: isActive ?? this.isActive,
+      isSmartDevice: isSmartDevice ?? this.isSmartDevice,
+    );
   }
 }

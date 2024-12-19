@@ -1,6 +1,7 @@
 import 'package:ecowatt/features/home/logic/room_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../device/models/device_model.dart';
 import '../models/room_model.dart';
 import '../repositories/room_repository.dart';
 
@@ -16,7 +17,7 @@ class RoomCubit extends Cubit<RoomState> {
       final rooms = await _roomRepository.getAllRooms();
       emit(RoomLoaded(rooms));
     } catch (e) {
-      emit(const RoomError('Failed to load rooms.'));
+      emit(const RoomError('Failed to load rooms'));
     }
   }
 
@@ -27,8 +28,13 @@ class RoomCubit extends Cubit<RoomState> {
       final room = await _roomRepository.getRoomById(roomId);
       emit(RoomDetailsLoaded(room!));
     } catch (e) {
-      emit(const RoomError('Failed to load room details.'));
+      emit(const RoomError('Failed to load room details'));
     }
+  }
+
+  // Get the total number of devices for a specific room
+  int fetchTotalDevicesByRoom(String roomId, List<DeviceModel> devices) {
+    return devices.where((device) => device.rid == roomId).length;
   }
 
   // Create a new room
@@ -38,7 +44,7 @@ class RoomCubit extends Cubit<RoomState> {
       await _roomRepository.createRoom(newRoom);
       await fetchRooms(); // Refresh list after creating
     } catch (e) {
-      emit(const RoomError('Failed to create room.'));
+      emit(const RoomError('Failed to create room'));
     }
   }
 
@@ -49,7 +55,7 @@ class RoomCubit extends Cubit<RoomState> {
       await _roomRepository.updateRoom(updatedRoom);
       await fetchRooms(); // Refresh list after updating
     } catch (e) {
-      emit(const RoomError('Failed to update room.'));
+      emit(const RoomError('Failed to update room'));
     }
   }
 
@@ -60,7 +66,7 @@ class RoomCubit extends Cubit<RoomState> {
       await _roomRepository.deleteRoom(roomId);
       await fetchRooms(); // Refresh list after deletion
     } catch (e) {
-      emit(const RoomError('Failed to delete room.'));
+      emit(const RoomError('Failed to delete room'));
     }
   }
 }

@@ -25,12 +25,11 @@ class RoomRepository {
 
   // Create a new room
   Future<void> createRoom(RoomModel room) async {
-    DocumentReference roomRef = FirebaseFirestore.instance
-        .collection('rooms')
-        .doc();
+    DocumentReference roomRef =
+        FirebaseFirestore.instance.collection('rooms').doc();
 
     RoomModel newRoom = RoomModel(
-        rid: roomRef.id, name: room.name, totalDevices: room.totalDevices);
+        rid: roomRef.id, name: room.name, description: room.description);
 
     await roomRef.set(newRoom.toJson());
   }

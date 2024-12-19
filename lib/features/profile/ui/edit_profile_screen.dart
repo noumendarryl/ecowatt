@@ -20,13 +20,11 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final TextEditingController _nameController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _displayNameController = TextEditingController();
-
   final TextEditingController _emailController = TextEditingController();
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File? _profileImage;
 
   Future<void> _pickImage() async {
@@ -90,8 +88,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 .colorScheme
                 .onSurface,
             appBar: AppBar(
+              backgroundColor: Theme.of(context).colorScheme.onSurface,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Theme.of(context).colorScheme.tertiary,
+                  size: smallSize + 10,
+                ),
+                onPressed: () {
+                  context.router.maybePop();
+                },
+              ),
               title: Text(
-                "Rooms",
+                "Edit Profile",
                 style: TextStyle(
                   color: Theme
                       .of(context)
@@ -100,12 +109,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   fontFamily: Theme
                       .of(context)
                       .textTheme
-                      .titleSmall!
+                      .titleLarge!
                       .fontFamily,
                   fontSize: Theme
                       .of(context)
                       .textTheme
-                      .titleSmall!
+                      .titleLarge!
                       .fontSize,
                   fontWeight: Theme
                       .of(context)
@@ -125,6 +134,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 formKey: _formKey,
                 label: 'Save',
                 onAction: _saveProfile,
+                pickImage: _pickImage,
                 isAvatar: true,
                 photoUrl: state.maybeWhen(
                   loaded: (user) =>

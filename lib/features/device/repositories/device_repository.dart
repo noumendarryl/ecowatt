@@ -38,17 +38,13 @@ class DeviceRepository {
         description: device.description,
         type: device.type,
         rid: device.rid,
-        sensorId: device.sensorId,
+        sid: device.sid,
         uid: FirebaseAuth.instance.currentUser!.uid,
         isActive: device.isSmartDevice,
         isSmartDevice: device.isSmartDevice);
 
     await deviceRef // Use device ID as document ID
         .set(newDevice.toJson());
-
-    await deviceRef // Use device ID as document ID
-        .collection('measurements')
-        .add(newDevice.measurements!);
   }
 
   // Update an existing device

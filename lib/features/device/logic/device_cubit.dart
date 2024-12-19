@@ -16,7 +16,7 @@ class DeviceCubit extends Cubit<DeviceState> {
       final devices = await _deviceRepository.getAllDevices();
       emit(DeviceLoaded(devices));
     } catch (e) {
-      emit(const DeviceError('Failed to load devices.'));
+      emit(const DeviceError('Failed to load devices'));
     }
   }
 
@@ -26,10 +26,10 @@ class DeviceCubit extends Cubit<DeviceState> {
       emit(const DeviceLoading());
       final device = await _deviceRepository.getDeviceById(did);
       if (device == null) {
-        emit(const DeviceError('Device not found.'));
+        emit(const DeviceError('Device not found'));
       }
     } catch (e) {
-      emit(const DeviceError('Failed to load device details.'));
+      emit(const DeviceError('Failed to load device details'));
     }
   }
 
@@ -38,17 +38,10 @@ class DeviceCubit extends Cubit<DeviceState> {
     try {
       emit(const DeviceLoading());
 
-      final devices = await _deviceRepository.getAllDevices();
-      final devicesWithNullSensorId = devices.where((d) => d.sensorId == null);
-
-      if (devicesWithNullSensorId.isNotEmpty) {
-        emit(const DeviceError('Failed to create device.'));
-      }
-
       await _deviceRepository.createDevice(newDevice);
       await fetchAllDevices(); // Refresh devices after adding
     } catch (e) {
-      emit(const DeviceError('Failed to create device.'));
+      emit(const DeviceError('Failed to create device'));
     }
   }
 
@@ -59,7 +52,7 @@ class DeviceCubit extends Cubit<DeviceState> {
       await _deviceRepository.updateDevice(updatedDevice);
       await fetchAllDevices(); // Refresh devices after updating
     } catch (e) {
-      emit(const DeviceError('Failed to update device.'));
+      emit(const DeviceError('Failed to update device'));
     }
   }
 
@@ -70,7 +63,7 @@ class DeviceCubit extends Cubit<DeviceState> {
       await _deviceRepository.deleteDevice(did);
       await fetchAllDevices(); // Refresh devices after deletion
     } catch (e) {
-      emit(const DeviceError('Failed to delete device.'));
+      emit(const DeviceError('Failed to delete device'));
     }
   }
 
@@ -81,7 +74,7 @@ class DeviceCubit extends Cubit<DeviceState> {
       final devices = await _deviceRepository.getDevicesByRoomId(rid);
       emit(DeviceLoaded(devices));
     } catch (e) {
-      emit(const DeviceError('Failed to load devices for this room.'));
+      emit(const DeviceError('Failed to load devices for this room'));
     }
   }
 
@@ -92,7 +85,7 @@ class DeviceCubit extends Cubit<DeviceState> {
       final devices = await _deviceRepository.searchDevicesByName(query);
       emit(DeviceLoaded(devices));
     } catch (e) {
-      emit(const DeviceError('Failed to find this device.'));
+      emit(const DeviceError('Failed to find this device'));
     }
   }
 }

@@ -12,7 +12,7 @@ class BuildFloatingActionButton extends StatelessWidget {
       },
       backgroundColor: Colors.purple,
       elevation: 5,
-      child: const Icon(Icons.add, size: mediumSize),
+      child: const Icon(Icons.add, size: smallSize + 10),
     );
   }
 }

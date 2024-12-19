@@ -21,9 +21,9 @@ DeviceMeasurementModel _$DeviceMeasurementModelFromJson(
 
 /// @nodoc
 mixin _$DeviceMeasurementModel {
-  double get voltage => throw _privateConstructorUsedError;
-  double get power => throw _privateConstructorUsedError;
   String get mid => throw _privateConstructorUsedError;
+  String get sid => throw _privateConstructorUsedError;
+  double get power => throw _privateConstructorUsedError;
   DateTime get timestamp => throw _privateConstructorUsedError;
 
   /// Serializes this DeviceMeasurementModel to a JSON map.
@@ -42,8 +42,7 @@ abstract class $DeviceMeasurementModelCopyWith<$Res> {
           $Res Function(DeviceMeasurementModel) then) =
       _$DeviceMeasurementModelCopyWithImpl<$Res, DeviceMeasurementModel>;
   @useResult
-  $Res call(
-      {double voltage, double power, String mid, DateTime timestamp});
+  $Res call({String mid, String sid, double power, DateTime timestamp});
 }
 
 /// @nodoc
@@ -62,24 +61,24 @@ class _$DeviceMeasurementModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? voltage = null,
-    Object? power = null,
     Object? mid = null,
+    Object? sid = null,
+    Object? power = null,
     Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
-      voltage: null == voltage
-          ? _value.voltage
-          : voltage // ignore: cast_nullable_to_non_nullable
-              as double,
-      power: null == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as double,
       mid: null == mid
           ? _value.mid
           : mid // ignore: cast_nullable_to_non_nullable
               as String,
+      sid: null == sid
+          ? _value.sid
+          : sid // ignore: cast_nullable_to_non_nullable
+              as String,
+      power: null == power
+          ? _value.power
+          : power // ignore: cast_nullable_to_non_nullable
+              as double,
       timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
@@ -97,8 +96,7 @@ abstract class _$$DeviceMeasurementModelImplCopyWith<$Res>
       __$$DeviceMeasurementModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {double voltage, double power, String mid, DateTime timestamp});
+  $Res call({String mid, String sid, double power, DateTime timestamp});
 }
 
 /// @nodoc
@@ -116,24 +114,24 @@ class __$$DeviceMeasurementModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? voltage = null,
-    Object? power = null,
     Object? mid = null,
+    Object? sid = null,
+    Object? power = null,
     Object? timestamp = null,
   }) {
     return _then(_$DeviceMeasurementModelImpl(
-      voltage: null == voltage
-          ? _value.voltage
-          : voltage // ignore: cast_nullable_to_non_nullable
-              as double,
-      power: null == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as double,
       mid: null == mid
           ? _value.mid
           : mid // ignore: cast_nullable_to_non_nullable
               as String,
+      sid: null == sid
+          ? _value.sid
+          : sid // ignore: cast_nullable_to_non_nullable
+              as String,
+      power: null == power
+          ? _value.power
+          : power // ignore: cast_nullable_to_non_nullable
+              as double,
       timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
@@ -146,26 +144,26 @@ class __$$DeviceMeasurementModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DeviceMeasurementModelImpl implements _DeviceMeasurementModel {
   const _$DeviceMeasurementModelImpl(
-      {required this.voltage,
+      {required this.mid,
+      required this.sid,
       required this.power,
-      required this.mid,
       required this.timestamp});
 
   factory _$DeviceMeasurementModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DeviceMeasurementModelImplFromJson(json);
 
   @override
-  final double voltage;
+  final String mid;
+  @override
+  final String sid;
   @override
   final double power;
-  @override
-  final String mid;
   @override
   final DateTime timestamp;
 
   @override
   String toString() {
-    return 'DeviceMeasurementModel(voltage: $voltage, power: $power, mid: $mid, timestamp: $timestamp)';
+    return 'DeviceMeasurementModel(mid: $mid, sid: $sid, power: $power, timestamp: $timestamp)';
   }
 
   @override
@@ -173,18 +171,16 @@ class _$DeviceMeasurementModelImpl implements _DeviceMeasurementModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeviceMeasurementModelImpl &&
-            (identical(other.voltage, voltage) || other.voltage == voltage) &&
+            (identical(other.mid, mid) || other.mid == mid) &&
+            (identical(other.sid, sid) || other.sid == sid) &&
             (identical(other.power, power) || other.power == power) &&
-            (identical(other.mid, mid) ||
-                other.mid == mid) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, voltage, power, mid, timestamp);
+  int get hashCode => Object.hash(runtimeType, mid, sid, power, timestamp);
 
   /// Create a copy of DeviceMeasurementModel
   /// with the given fields replaced by the non-null parameter values.
@@ -205,20 +201,20 @@ class _$DeviceMeasurementModelImpl implements _DeviceMeasurementModel {
 
 abstract class _DeviceMeasurementModel implements DeviceMeasurementModel {
   const factory _DeviceMeasurementModel(
-      {required final double voltage,
+      {required final String mid,
+      required final String sid,
       required final double power,
-      required final String mid,
       required final DateTime timestamp}) = _$DeviceMeasurementModelImpl;
 
   factory _DeviceMeasurementModel.fromJson(Map<String, dynamic> json) =
       _$DeviceMeasurementModelImpl.fromJson;
 
   @override
-  double get voltage;
+  String get mid;
+  @override
+  String get sid;
   @override
   double get power;
-  @override
-  String get mid;
   @override
   DateTime get timestamp;
 

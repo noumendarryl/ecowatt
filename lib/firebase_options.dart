@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDVKtm3UxCiPblX3uOi7e5UXNdOkzcLnFM',
-    appId: '1:860556511471:android:cf2796ed451e5d7290f31a',
-    messagingSenderId: '860556511471',
-    projectId: 'ecowatt-7f29b',
-    storageBucket: 'ecowatt-7f29b.appspot.com',
+    apiKey: 'AIzaSyAcppK3gV5eD-2hyWhGbtdkw_1EyVbDyJQ',
+    appId: '1:447770124847:android:04f758573a5204a5eadcda',
+    messagingSenderId: '447770124847',
+    projectId: 'ecowatt-b23eb',
+    storageBucket: 'ecowatt-b23eb.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDFXRduldt0Vzuyt8H84hd61u-Y434MupM',
-    appId: '1:860556511471:ios:e015be3af21150a990f31a',
-    messagingSenderId: '860556511471',
-    projectId: 'ecowatt-7f29b',
-    storageBucket: 'ecowatt-7f29b.appspot.com',
+    apiKey: 'AIzaSyBMmSDIGotcLQDj9OVmKaIlU0JNCVBkD14',
+    appId: '1:447770124847:ios:029c4c932a5dd992eadcda',
+    messagingSenderId: '447770124847',
+    projectId: 'ecowatt-b23eb',
+    storageBucket: 'ecowatt-b23eb.firebasestorage.app',
     iosBundleId: 'com.ecowatt.app',
   );
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBAmzLIYrPHNZB0Oah3PmloZAlQFb-AaD8',
-    appId: '1:860556511471:web:f9d8357f3208d78e90f31a',
-    messagingSenderId: '860556511471',
-    projectId: 'ecowatt-7f29b',
-    authDomain: 'ecowatt-7f29b.firebaseapp.com',
-    storageBucket: 'ecowatt-7f29b.appspot.com',
+    apiKey: 'AIzaSyCc04JIG0Iw1OeFH8anjAbDtngEsOWvqwc',
+    appId: '1:447770124847:web:3e11373ce82236cfeadcda',
+    messagingSenderId: '447770124847',
+    projectId: 'ecowatt-b23eb',
+    authDomain: 'ecowatt-b23eb.firebaseapp.com',
+    storageBucket: 'ecowatt-b23eb.firebasestorage.app',
   );
 
 }

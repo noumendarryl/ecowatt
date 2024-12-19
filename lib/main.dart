@@ -10,6 +10,8 @@ import 'package:ecowatt/features/profile/logic/user_cubit.dart';
 import 'package:ecowatt/features/profile/repositories/user_repository.dart';
 import 'package:ecowatt/features/recommendations/logic/recommendation_cubit.dart';
 import 'package:ecowatt/features/recommendations/repositories/recommendation_repository.dart';
+import 'package:ecowatt/features/voice_command/logic/voice_command_cubit.dart';
+import 'package:ecowatt/features/voice_command/repositories/voice_command_repository.dart';
 import 'package:ecowatt/features/weather/logic/weather_cubit.dart';
 import 'package:ecowatt/features/weather/repositories/weather_repository.dart';
 import 'package:ecowatt/routing/app_router.dart';
@@ -20,6 +22,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'features/auth/logic/auth_cubit.dart';
 import 'features/auth/repositories/auth_repository.dart';
+import 'features/dashboard/logic/sensor_cubit.dart';
+import 'features/dashboard/repositories/sensor_repository.dart';
+import 'features/profile/logic/edit_profile_cubit.dart';
+import 'features/voice_command/logic/voice_command_strategy.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -53,8 +59,14 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<RecommendationRepository>(
           create: (context) => RecommendationRepository(),
         ),
+        RepositoryProvider<VoiceCommandRepository>(
+          create: (context) => VoiceCommandRepository(),
+        ),
         RepositoryProvider<DeviceMeasurementRepository>(
           create: (context) => DeviceMeasurementRepository(),
+        ),
+        RepositoryProvider<SensorRepository>(
+          create: (context) => SensorRepository(),
         ),
         RepositoryProvider<UserRepository>(
           create: (context) => UserRepository(),
@@ -80,20 +92,29 @@ class MyApp extends StatelessWidget {
             BlocProvider<RecommendationCubit>(
               create: (context) => RecommendationCubit(context.read<RecommendationRepository>()),
             ),
+            BlocProvider<VoiceCommandCubit>(
+              create: (context) => VoiceCommandCubit(context.read<VoiceCommandRepository>(), SpeechToTextVoiceCommandStrategy()),
+            ),
             BlocProvider<DeviceMeasurementCubit>(
               create: (context) => DeviceMeasurementCubit(context.read<DeviceMeasurementRepository>()),
             ),
+            BlocProvider<SensorCubit>(
+              create: (context) => SensorCubit(context.read<SensorRepository>()),
+            ),
             BlocProvider<UserCubit>(
               create: (context) => UserCubit(context.read<UserRepository>()),
+            ),
+            BlocProvider<EditProfileCubit>(
+              create: (context) => EditProfileCubit(context.read<UserRepository>(), context.read<AuthRepository>()),
             ),
             BlocProvider<WeatherCubit>(
               create: (context) => WeatherCubit(context.read<WeatherRepository>()),
             ),
           ],
-          child: MaterialApp.router(
+          child: 	MaterialApp.router(
             debugShowCheckedModeBanner: false,
             theme: AppThemes.lightTheme,
-            routerConfig: _appRouter.config(),
+           routerConfig: _appRouter.config(),
           )),
     );
   }

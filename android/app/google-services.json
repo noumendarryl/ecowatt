@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "860556511471",
-    "project_id": "ecowatt-7f29b",
-    "storage_bucket": "ecowatt-7f29b.appspot.com"
+    "project_number": "447770124847",
+    "project_id": "ecowatt-b23eb",
+    "storage_bucket": "ecowatt-b23eb.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:860556511471:android:cf2796ed451e5d7290f31a",
+        "mobilesdk_app_id": "1:447770124847:android:04f758573a5204a5eadcda",
         "android_client_info": {
           "package_name": "com.ecowatt.app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDVKtm3UxCiPblX3uOi7e5UXNdOkzcLnFM"
+          "current_key": "AIzaSyAcppK3gV5eD-2hyWhGbtdkw_1EyVbDyJQ"
         }
       ],
       "services": {

@@ -6,7 +6,6 @@ import 'package:ecowatt/shared/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../utils/formatters.dart';
 import 'button.dart';
@@ -16,6 +15,7 @@ class FormLayout extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final String label;
   final Function() onAction;
+  final Function()? pickImage;
   final bool? isAvatar;
   final String? photoUrl;
   File? avatar;
@@ -39,12 +39,12 @@ class FormLayout extends StatefulWidget {
   final bool? isCancel;
   final double? gap;
 
-
   FormLayout({
     super.key,
     required this.formKey,
     required this.label,
     required this.onAction,
+    this.pickImage,
     this.isAvatar = false,
     this.isUsername = false,
     this.usernameValue,
@@ -64,7 +64,9 @@ class FormLayout extends StatefulWidget {
     this.phoneController,
     this.isLoading = false,
     this.isCancel = false,
-    this.gap = 5.0, this.photoUrl, this.avatar,
+    this.gap = 5.0,
+    this.photoUrl,
+    this.avatar,
   });
 
   @override
@@ -77,15 +79,15 @@ class _FormLayoutState extends State<FormLayout> {
   final RxBool _isConfirmPasswordVisible = true.obs;
 
   //static String? avatar;
-  Future<void> _pickImage() async {
-    final pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        widget.avatar = File(pickedFile.path);
-      });
-    }
-  }
+  // Future<void> _pickImage() async {
+  //   final pickedFile =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       widget.avatar = File(pickedFile.path);
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +98,19 @@ class _FormLayoutState extends State<FormLayout> {
         runSpacing: mediumSize,
         children: [
           if (widget.isAvatar!)
-            UserAvatar( // Utiliser UserAvatar ici
-              width: 100.0, // Définissez la largeur souhaitée
-              height: 100.0, // Définissez la hauteur souhaitée
-              avatar: widget.avatar, // Utilisez _profileImage pour l'image locale
-              photoURL: widget.photoUrl, // Utilisez photoURL de l'utilisateur
+            UserAvatar(
+              // Utiliser UserAvatar ici
+              width: 100.0,
+              // Définissez la largeur souhaitée
+              height: 100.0,
+              // Définissez la hauteur souhaitée
+              avatar: widget.avatar,
+              // Utilisez _profileImage pour l'image locale
+              photoURL: widget.photoUrl,
+              // Utilisez photoURL de l'utilisateur
               onAction: () {
                 // Ouvrir le sélecteur d'images lorsque l'utilisateur clique sur l'avatar
-                _pickImage();
+                widget.pickImage!();
               },
             ),
           Wrap(
@@ -115,6 +122,12 @@ class _FormLayoutState extends State<FormLayout> {
                   controller: widget.displayNameController!,
                   keyboardType: TextInputType.text,
                   suffixIcon: const Icon(Icons.person),
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "Display Name is required";
+                    }
+                    return null;
+                  },
                 ),
               if (widget.isUsername!)
                 Input(
@@ -122,6 +135,12 @@ class _FormLayoutState extends State<FormLayout> {
                   controller: widget.usernameController!,
                   keyboardType: TextInputType.text,
                   suffixIcon: const Icon(Icons.person),
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "Username is required";
+                    }
+                    return null;
+                  },
                 ),
               if (widget.isEmail!)
                 Input(
@@ -204,10 +223,15 @@ class _FormLayoutState extends State<FormLayout> {
           Wrap(
             runSpacing: widget.isCancel! ? mediumSize : 0.0,
             children: [
-              Button(label: widget.label, isLoading: widget.isLoading, onPressed: widget.onAction),
+              Button(
+                  label: widget.label,
+                  padding: smallSize,
+                  isLoading: widget.isLoading,
+                  onPressed: widget.onAction),
               if (widget.isCancel!)
                 Button(
                     label: "Cancel",
+                    padding: smallSize,
                     primary: false,
                     outlined: true,
                     onPressed: () {

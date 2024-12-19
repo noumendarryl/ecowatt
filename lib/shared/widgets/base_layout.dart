@@ -34,7 +34,7 @@ class BaseLayout extends StatelessWidget {
     } else if (index == 1) {
       context.router.push(const SearchDeviceRoute());
     } else if (index == 2) {
-      context.router.push(const AddDeviceRoute());
+      context.router.push(AddDeviceRoute());
     } else if (index == 3) {
       context.router.push(const RecommendationsRoute());
     } else if (index == 4) {
@@ -46,7 +46,7 @@ class BaseLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar ?? CustomAppBar(title: title!),
-      backgroundColor: Theme.of(context).colorScheme.onTertiary.withOpacity(0.3),
+      backgroundColor: Theme.of(context).colorScheme.onTertiary,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: child,
       bottomNavigationBar: CustomBottomNavigationBar(

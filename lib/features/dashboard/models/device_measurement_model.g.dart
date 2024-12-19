@@ -9,17 +9,17 @@ part of 'device_measurement_model.dart';
 _$DeviceMeasurementModelImpl _$$DeviceMeasurementModelImplFromJson(
         Map<String, dynamic> json) =>
     _$DeviceMeasurementModelImpl(
-      voltage: (json['voltage'] as num).toDouble(),
-      power: (json['power'] as num).toDouble(),
       mid: json['mid'] as String,
+      sid: json['sid'] as String,
+      power: (json['power'] as num).toDouble(),
       timestamp: DateTime.parse(json['timestamp'] as String),
     );
 
 Map<String, dynamic> _$$DeviceMeasurementModelImplToJson(
         _$DeviceMeasurementModelImpl instance) =>
     <String, dynamic>{
-      'voltage': instance.voltage,
-      'power': instance.power,
       'mid': instance.mid,
+      'sid': instance.sid,
+      'power': instance.power,
       'timestamp': instance.timestamp.toIso8601String(),
     };

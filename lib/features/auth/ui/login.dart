@@ -28,6 +28,7 @@ class Login extends StatelessWidget {
         state.maybeWhen(
             authenticated: (user) {
               showCustomSnackbar(
+                context,
                 title: "User Login successful",
                 message: "Your account has been validated for login",
                 type: SnackbarType.success,
@@ -36,6 +37,7 @@ class Login extends StatelessWidget {
             },
             unauthenticated: () {
               showCustomSnackbar(
+                context,
                 title: "User Authentication Failed",
                 message:
                     "You failed to login with these credentials. Please try again.",
@@ -54,16 +56,16 @@ class Login extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: largeSize),
+                      padding: const EdgeInsets.only(top: largeSize, bottom: smallSize),
                       child: Center(
                         child: Image.asset(
-                          "images/logo/ecowatt.png",
-                          height: size.height * 0.2,
+                          "assets/images/logo/ecowatt.png",
+                          height: size.height * 0.12,
                         ),
                       )
                     ),
                     Text(
-                      "Welcome Back !",
+                      "Welcome back !",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.scrim,
                           fontFamily: Theme.of(context)
@@ -76,15 +78,14 @@ class Login extends StatelessWidget {
                               .headlineLarge!
                               .fontWeight),
                     ),
-                    verticalSpaceSmall,
                     Text(
                       "Please enter your credentials to continue",
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onTertiary,
+                        color: Theme.of(context).colorScheme.tertiary,
                         fontFamily:
                             Theme.of(context).textTheme.bodySmall!.fontFamily,
                         fontSize:
-                            Theme.of(context).textTheme.bodyMedium!.fontSize,
+                            Theme.of(context).textTheme.bodySmall!.fontSize,
                       ),
                     ),
                     verticalSpaceMedium,
@@ -104,20 +105,19 @@ class Login extends StatelessWidget {
                       },
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25.0),
+                      padding: const EdgeInsets.symmetric(vertical: mediumSize),
                       child: TextRich(
                         secondaryText: "Lost password ?",
                         onClick: () {},
                       ),
                     ),
-                    verticalSpaceSmall,
                     Footer(
                       size: size,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 35.0),
+                      padding: const EdgeInsets.only(top: mediumSize),
                       child: TextRich(
-                        primaryText: "Don't have an account yet ?",
+                        primaryText: "Don't have an account yet ? ",
                         secondaryText: " Sign up",
                         alignment: Alignment.center,
                         onClick: () {

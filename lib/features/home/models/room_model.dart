@@ -2,13 +2,11 @@ class RoomModel {
   final String? rid;
   final String name;
   final String? description;
-  final int totalDevices;
 
   RoomModel({
     this.rid,
     required this.name,
     this.description,
-    required this.totalDevices,
   });
 
   // Method to convert JSON data to RoomModel
@@ -17,7 +15,6 @@ class RoomModel {
       rid: data['rid'],
       name: data['name'],
       description: data['description'],
-      totalDevices: data['totalDevices'],
     );
   }
 
@@ -27,7 +24,6 @@ class RoomModel {
       'rid': rid,
       'name': name,
       'description': description,
-      'totalDevices': totalDevices,
     };
   }
 }

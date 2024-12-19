@@ -1,6 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Permission to access the internet, which is crucial for making API calls -->
+	<uses-permission android:name="android.permission.INTERNET" />
+
+	<!-- Permission to access network state (recommended for checking connectivity) -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+	<!-- Optional: If you want to get the user's precise location for more accurate weather data -->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
-        android:label="ecowatt"
+        android:label="Ecowatt"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

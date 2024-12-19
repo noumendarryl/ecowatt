@@ -44,7 +44,7 @@ dependencies:
   firebase_auth: ^5.3.1
   geocoding: ^3.0.0
   google_fonts: ^6.2.1
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.2.2
   permission_handler: ^11.3.1
   file_picker: ^8.1.2
   intl: ^0.19.0
@@ -61,6 +61,8 @@ dependencies:
   google_sign_in: ^6.2.1
   fl_chart: ^0.69.0
   json_annotation: ^4.9.0
+  speech_to_text: ^7.0.0
+  avatar_glow: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +92,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/
+   - assets/images/logo/
+   - assets/images/brands/
+   - assets/images/onboarding/
+   - assets/images/search/
+   - assets/images/errors/
    - assets/fonts/
    - assets/weather/
 
@@ -105,13 +112,14 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Axiforma
+    - family: Degular
       fonts:
-        - asset: assets/fonts/Axiforma/Axiforma-Regular.ttf
-        - asset: assets/fonts/Axiforma/Axiforma-Medium.ttf
+        - asset: assets/fonts/Degular/DegularDisplayDemo-Regular.otf
+        - asset: assets/fonts/Degular/DegularDisplayDemo-Medium.otf
           weight: 500
-        - asset: assets/fonts/Axiforma/Axiforma-SemiBold.ttf
+        - asset: assets/fonts/Degular/DegularDisplayDemo-Semibold.otf
           weight: 700
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

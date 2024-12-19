@@ -28,8 +28,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 : Icons.toggle_off_outlined,
             color: currentIndex == 0
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onTertiary,
-            size: mediumSize,
+                : Theme.of(context).colorScheme.tertiary,
+            size: smallSize + 10,
           ),
         ),
         BottomNavigationBarItem(
@@ -38,8 +38,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             CupertinoIcons.search,
             color: currentIndex == 1
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onTertiary,
-            size: mediumSize,
+                : Theme.of(context).colorScheme.tertiary,
+            size: smallSize + 10,
           ),
         ),
         BottomNavigationBarItem(
@@ -57,8 +57,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
               CupertinoIcons.add,
               color: currentIndex == 2
                   ? Theme.of(context).colorScheme.onSurface
-                  : Theme.of(context).colorScheme.onTertiary,
-              size: mediumSize,
+                  : Theme.of(context).colorScheme.tertiary,
+              size: smallSize + 10,
             ),
           ),
         ),
@@ -68,8 +68,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             CupertinoIcons.square_favorites,
             color: currentIndex == 3
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onTertiary,
-            size: mediumSize,
+                : Theme.of(context).colorScheme.tertiary,
+            size: smallSize + 10,
           ),
         ),
         BottomNavigationBarItem(
@@ -78,8 +78,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             CupertinoIcons.chart_bar_square,
             color: currentIndex == 4
                 ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.onTertiary,
-            size: mediumSize,
+                : Theme.of(context).colorScheme.tertiary,
+            size: smallSize + 10,
           ),
         ),
       ],

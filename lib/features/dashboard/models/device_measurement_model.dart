@@ -7,7 +7,7 @@ part 'device_measurement_model.g.dart';
 class DeviceMeasurementModel with _$DeviceMeasurementModel {
   const factory DeviceMeasurementModel({
     required String mid,
-    required double voltage,
+    required String sid,
     required double power,
     required DateTime timestamp,
   }) = _DeviceMeasurementModel;

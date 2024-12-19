@@ -6,7 +6,8 @@ import 'recommendation_state.dart';
 class RecommendationCubit extends Cubit<RecommendationState> {
   final RecommendationRepository _repository;
 
-  RecommendationCubit(this._repository) : super(const RecommendationState.initial());
+  RecommendationCubit(this._repository)
+      : super(const RecommendationState.initial());
 
   Future<void> loadRecommendations() async {
     try {

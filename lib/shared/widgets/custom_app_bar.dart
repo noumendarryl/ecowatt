@@ -42,30 +42,61 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onSurface,
       elevation: 0,
-      automaticallyImplyLeading: true,
+      //automaticallyImplyLeading: true,
       centerTitle: true,
       leading: BlocBuilder<WeatherCubit, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoaded) {
             String iconUrl =
                 "http://openweathermap.org/img/wn/${state.weather.icon}@2x.png"; // URL de l'icône
-            return IconButton(
-              icon: Row(
+            return Padding(
+            padding: const EdgeInsets.only(left: smallSize),
+            child: IconButton(
+              icon: Column(
                 children: [
-                  Image.network(iconUrl, width: 30, height: 30),
-                  // Affichage de l'icône
-                  horizontalSpaceTiny,
-                  Text(
-                    "${state.weather.temperature.toStringAsFixed(1)}°C",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.scrim,
-                    ), // Couleur du texte
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+          		  crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Affichage de l'icône
+                      Image.network(
+                        iconUrl,
+                        width: 30,
+                        height: 30,
+                        scale: 0.5,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      horizontalSpaceTiny,
+                      Text(
+                        "${state.weather.temperature.toStringAsFixed(1)}°C",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontFamily: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .fontFamily,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ), // Couleur du texte
+                      ),
+                      Text(
+                        'Today Weather',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontFamily:
+                              Theme.of(context).textTheme.bodySmall!.fontFamily,
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.bold,
+                        ), // Couleur du texte
+                      ),
+                    ],
                   ),
                 ],
               ),
               onPressed: () {
                 context.router.push(const WeatherRoute());
               },
+            )
             );
           } else if (state is WeatherLoading) {
             return Center(
@@ -74,13 +105,52 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
             ); // Afficher un indicateur de chargement si nécessaire
           }
-          return Icon(
-            CupertinoIcons.smoke_fill,
-            color: Theme.of(context).colorScheme.primary,
-            size: mediumSize + 5.0,
+          return Padding(
+          padding: const EdgeInsets.only(left: smallSize),
+          child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    CupertinoIcons.smoke_fill,
+                    color: Theme.of(context).colorScheme.primary,
+                    size: smallSize + 10 + 5.0,
+                  ),
+                  horizontalSpaceSmall,
+                  Text(
+                    "32°C",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.scrim,
+                      fontFamily: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .fontFamily,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ), // Couleur du texte
+                  ),
+
+                ],
+              ),
+              Text(
+                'Today Weather',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
+                  fontFamily:
+                  Theme.of(context).textTheme.bodySmall!.fontFamily,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.normal,
+                ), // Couleur du texte
+              ),
+            ],
+          )
           ); // Retourner un conteneur vide si aucun état n'est chargé
         },
       ),
+      leadingWidth: 100.0,
       title: Text(widget.title,
           style: TextStyle(
               color: Theme.of(context).colorScheme.scrim,
@@ -91,12 +161,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
         BlocBuilder<UserCubit, UserState>(
           builder: (context, state) {
             return state.when(
-              initial: () => const Padding(
-                padding: EdgeInsets.only(right: 15),
-                child: Icon(Icons.person),
+              initial: () => Padding(
+                padding: const EdgeInsets.only(right: smallSize + 5.0),
+                child: Icon(
+                  Icons.person,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
               loading: () => Padding(
-                padding: const EdgeInsets.only(right: 15),
+                padding: const EdgeInsets.only(right: smallSize + 5.0),
                 child: CircularProgressIndicator(
                   color: Theme.of(context).colorScheme.primary,
                 ), // Afficher un indicateur de chargement
@@ -116,7 +189,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           child: (user.photoURL.isEmpty)
                               ? Icon(Icons.person,
                                   color:
-                                      Theme.of(context).colorScheme.onTertiary,
+                                      Theme.of(context).colorScheme.onSurface,
                                   size:
                                       mediumSize) // Icône par défaut si pas de photo
                               : null,

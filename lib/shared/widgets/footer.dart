@@ -23,8 +23,8 @@ class Footer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: size.width / 3,
-                height: 2.0,
+                width: size.width / 2.5,
+                height: 1.0,
                 child: Container(
                   color: Theme.of(context).colorScheme.onTertiary,
                 ),
@@ -35,29 +35,28 @@ class Footer extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium
-                    ?.copyWith(color: Theme.of(context).colorScheme.onTertiary),
+                    ?.copyWith(color: Theme.of(context).colorScheme.tertiary),
               ),
               horizontalSpaceSmall,
               SizedBox(
-                width: size.width / 3,
-                height: 2.0,
+                width: size.width / 2.5,
+                height: 1.0,
                 child: Container(
                   color: Theme.of(context).colorScheme.onTertiary,
                 ),
               ),
             ],
           ),
-          const SizedBox(
-            height: 30.0,
-          ),
+          verticalSpaceSmall,
           Wrap(
             runSpacing: smallSize,
             children: [
               Button(
                 label: 'Continue with Google',
+                padding: smallSize,
                 primary: false,
                 prefix: Image.asset(
-                  "images/brands/google.png",
+                  "assets/images/brands/google.png",
                   height: size.height * 0.05,
                 ),
                 onPressed: () {
@@ -66,12 +65,14 @@ class Footer extends StatelessWidget {
               ),
               Button(
                 label: 'Continue with Apple',
+                padding: smallSize + 3.0,
                 primary: false,
                 prefix: Image.asset(
-                 "images/brands/apple.png",
-                  height: size.height * 0.04,
+                  "assets/images/brands/apple.png",
+                  height: size.height * 0.035,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                },
               ),
             ],
           ),

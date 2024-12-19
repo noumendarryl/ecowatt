@@ -4,45 +4,48 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTexts{
   AppTexts._();
 
-  static const _fontFamily = 'Axiforma';
+  static const _headerFontFamily = 'Degular';
 
   static TextTheme textTheme = TextTheme(
-    displayLarge: GoogleFonts.lexend(
+    displayLarge: const TextStyle(
+      fontFamily: _headerFontFamily,
       fontWeight: FontWeight.w700,
       fontSize: 40.0,
     ),
-    headlineLarge: GoogleFonts.lexend(
+    headlineLarge: const TextStyle(
+      fontFamily: _headerFontFamily,
       fontWeight: FontWeight.w700,
       fontSize: 28.0,
     ),
-    titleLarge: GoogleFonts.lexend(
+    titleLarge: const TextStyle(
+      fontFamily: _headerFontFamily,
       fontWeight: FontWeight.w700,
       fontSize: 24.0,
     ),
-    titleMedium: GoogleFonts.lexend(
+    titleMedium: const TextStyle(
+      fontFamily: _headerFontFamily,
       fontWeight: FontWeight.w700,
       fontSize: 20.0,
     ),
-    titleSmall: GoogleFonts.lexend(
+    titleSmall: const TextStyle(
+      fontFamily: _headerFontFamily,
       fontWeight: FontWeight.w700,
       fontSize: 18.0,
     ),
-    bodyLarge: const TextStyle(
-      fontFamily: _fontFamily,
-      fontWeight: FontWeight.w700,
+    bodyLarge: GoogleFonts.inter(
+      fontWeight: FontWeight.normal,
       fontSize: 18.0,
     ),
-    bodyMedium: const TextStyle(
-      fontFamily: _fontFamily,
-      fontWeight: FontWeight.w500,
+    bodyMedium: GoogleFonts.inter(
+      fontWeight: FontWeight.normal,
       fontSize: 16.0,
     ),
-    bodySmall: const TextStyle(
-      fontFamily: _fontFamily,
+    bodySmall: GoogleFonts.inter(
+      fontWeight: FontWeight.normal,
       fontSize: 14.0,
     ),
-    labelSmall: const TextStyle(
-      fontFamily: _fontFamily,
+    labelSmall: GoogleFonts.inter(
+      fontWeight: FontWeight.normal,
       fontSize: 12.0,
     ),
   );

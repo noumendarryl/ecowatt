@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recommendation_model.dart';
+part of 'sensor_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RecommendationModelImpl _$$RecommendationModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RecommendationModelImpl(
-      title: json['title'] as String,
+_$SensorModelImpl _$$SensorModelImplFromJson(Map<String, dynamic> json) =>
+    _$SensorModelImpl(
+      sid: json['sid'] as String,
+      name: json['name'] as String,
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$$RecommendationModelImplToJson(
-        _$RecommendationModelImpl instance) =>
+Map<String, dynamic> _$$SensorModelImplToJson(_$SensorModelImpl instance) =>
     <String, dynamic>{
-      'title': instance.title,
+      'sid': instance.sid,
+      'name': instance.name,
       'description': instance.description,
     };

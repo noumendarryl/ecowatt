@@ -22,9 +22,9 @@ class TextRich extends StatelessWidget {
         TextSpan(
             text: primaryText,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.scrim,
-              fontFamily: Theme.of(context).textTheme.bodyMedium!.fontFamily,
-              fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+              color: Theme.of(context).colorScheme.tertiary,
+              fontFamily: Theme.of(context).textTheme.bodySmall!.fontFamily,
+              fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
             ),
             children: [
               TextSpan(
@@ -32,10 +32,10 @@ class TextRich extends StatelessWidget {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontFamily:
-                      Theme.of(context).textTheme.bodyMedium!.fontFamily,
-                  fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                      Theme.of(context).textTheme.titleSmall!.fontFamily,
+                  fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
                   fontWeight:
-                      Theme.of(context).textTheme.bodyMedium!.fontWeight,
+                      Theme.of(context).textTheme.titleSmall!.fontWeight,
                 ),
                 recognizer: TapGestureRecognizer()..onTap = onClick,
               )

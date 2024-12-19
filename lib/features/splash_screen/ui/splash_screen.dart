@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../routing/app_router.gr.dart';
+import '../../../shared/widgets/blink_image.dart';
 import '../logic/bootstrap_cubit.dart';
 
 @RoutePage()
@@ -11,7 +12,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (_) => BootstrapCubit()..init(),
       child: BlocListener<BootstrapCubit, BootstrapState>(
@@ -21,16 +21,18 @@ class SplashScreen extends StatelessWidget {
                 if (isLoggedIn) {
                   context.pushRoute(const HomeRoute());
                 } else {
-                  context.pushRoute(const WelcomeRoute());
+                  context.pushRoute(const OnboardingRoute());
                 }
               },
               orElse: () {});
         },
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          body: Center(
-            child: Image.asset(
-                "images/logo/ecowatt.png",
+          body: const Center(
+            child: BlinkingImage(
+              imagePath: 'assets/images/logo/ecowatt.png',
+              blinkDuration: Duration(milliseconds: 300),
+              pauseDuration: Duration(seconds: 2),
             ),
           ),
         ),
